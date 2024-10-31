@@ -1,10 +1,16 @@
 'use client'
 import { useThemeLanguage } from '../../context/ThemeLanguageContext';
 import Link from 'next/link';
-import { Languages, Moon, Sun} from 'lucide-react';
+import { Languages, Moon, Sun } from 'lucide-react';
 
 export default function Navbar() {
   const { toggleLanguage, isDarkMode, toggleTheme, translations } = useThemeLanguage();
+
+  // Verificar el cambio de estado en la consola
+  const handleThemeToggle = () => {
+    toggleTheme();
+    console.log("Tema cambiado:", isDarkMode ? "Light Mode" : "Dark Mode");
+  };
 
   return (
     <nav className="flex items-center justify-between bg-background text-foreground shadow-md pb-4">
@@ -35,13 +41,13 @@ export default function Navbar() {
           onClick={toggleLanguage}
           className="px-3 py-1 bg-primary text-primary-foreground rounded hover:bg-primary/80 transition"
         >
-          <Languages/>
+          <Languages />
         </button>
         <button
-          onClick={toggleTheme}
+          onClick={handleThemeToggle}
           className="px-3 py-1 bg-secondary text-secondary-foreground rounded hover:bg-secondary/80 transition"
         >
-          {isDarkMode ? <Sun/> : <Moon/>}
+          {isDarkMode ? <Sun /> : <Moon />}
         </button>
       </div>
     </nav>
