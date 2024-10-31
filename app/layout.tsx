@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flexjustify-center `}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex justify-center`}
       >
         <ThemeLanguageProvider>
           <div className="w-full max-w-[1320px] flex flex-col justify-center p-6">

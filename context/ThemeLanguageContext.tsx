@@ -16,23 +16,21 @@ const ThemeLanguageContext = createContext<ThemeLanguageContextProps | undefined
 
 export const ThemeLanguageProvider = ({ children }: { children: ReactNode }) => {
   const [language, setLanguage] = useState<Language>('es');
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
-  // Cargar idioma y tema desde localStorage solo en el cliente
   useEffect(() => {
     const storedLanguage = localStorage.getItem('language') as Language;
     const storedTheme = localStorage.getItem('isDarkMode') === 'true';
 
     if (storedLanguage) setLanguage(storedLanguage);
-    setIsDarkMode(storedTheme);
+    setIsDarkMode(storedTheme || true);
   }, []);
 
-  // Actualizar localStorage cuando el idioma cambie
   useEffect(() => {
     localStorage.setItem('language', language);
   }, [language]);
 
-  // Efecto para aplicar el tema al montar y cada vez que cambie `isDarkMode`
   useEffect(() => {
     const root = document.documentElement;
     if (isDarkMode) {
@@ -68,7 +66,6 @@ export const ThemeLanguageProvider = ({ children }: { children: ReactNode }) => 
   );
 };
 
-// Custom hook para usar el contexto en otros componentes
 export const useThemeLanguage = () => {
   const context = useContext(ThemeLanguageContext);
   if (!context) {
