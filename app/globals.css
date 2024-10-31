@@ -2,14 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Forzar la inclusión de clases personalizadas en el build */
+.bg-background {}
+.text-foreground {}
+.border-border {}
+.bg-primary {}
+.text-primary-foreground {}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
 }
 
 @layer base {
@@ -40,6 +41,7 @@ body {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
