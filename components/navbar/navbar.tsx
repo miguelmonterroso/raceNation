@@ -1,8 +1,8 @@
-'use client'
-import * as React from "react"
-import Link from 'next/link'
-import { useThemeLanguage } from '../../context/ThemeLanguageContext'
-import { Languages, Moon, Sun } from 'lucide-react'
+"use client";
+import * as React from "react";
+import Link from "next/link";
+import { useThemeLanguage } from "../../context/ThemeLanguageContext";
+import { Languages, Moon, Sun, Menu, X } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,31 +11,135 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
-import Image from "next/image"
+} from "@/components/ui/navigation-menu";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import Image from "next/image";
 
 export default function Navbar() {
-  const { toggleLanguage, isDarkMode, toggleTheme, translations } = useThemeLanguage()
-  const [hoveredOption, setHoveredOption] = React.useState<string | null>('drag-race')
+  const { toggleLanguage, isDarkMode, toggleTheme, translations } = useThemeLanguage();
+  const [hoveredOption, setHoveredOption] = React.useState<string | null>("drag-race");
 
   const handleThemeToggle = () => {
-    toggleTheme()
-  }
+    toggleTheme();
+  };
 
   const imageMap: { [key: string]: string } = {
-    "drag-race": "https://images.unsplash.com/photo-1693876735001-23d71f24a85d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "drift": "https://images.unsplash.com/photo-1530538604540-de0436821dc9?q=80&w=1950&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "tuning-show": "https://images.unsplash.com/photo-1620882796805-089504e2a068?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-  }
+    "drag-race":
+      "https://images.unsplash.com/photo-1693876735001-23d71f24a85d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    drift:
+      "https://images.unsplash.com/photo-1530538604540-de0436821dc9?q=80&w=1950&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "tuning-show":
+      "https://images.unsplash.com/photo-1620882796805-089504e2a068?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  };
 
   return (
-    <nav className="flex items-center justify-between bg-background text-foreground shadow-md pb-4">
-      <div className="text-lg font-semibold">
-        RaceNation
-      </div>
+    <nav className="flex items-center justify-between bg-background text-foreground shadow-md pb-4 lg:pb-0 px-4">
+      <div className="text-lg font-semibold">RaceNation</div>
 
-      <NavigationMenu>
-        <NavigationMenuList>
+      <Sheet>
+        <SheetTrigger asChild>
+          <button className="lg:hidden p-2">
+            <Menu />
+          </button>
+        </SheetTrigger>
+
+        <SheetContent className="border-0 h-full flex items-center justify-center">
+          <SheetHeader className="h-[35%] flex items-center justify-evenly">
+            <SheetClose asChild className="flex justify-center">
+              <button className="mt-4 w-full text-center text-primary underline">
+                <X />
+              </button>
+            </SheetClose>
+            <div className="flex gap-4 mt-4">
+              <button
+                onClick={toggleLanguage}
+                className="px-3 py-1 bg-primary text-primary-foreground rounded hover:bg-primary/80 transition"
+              >
+                <Languages />
+              </button>
+              <button
+                onClick={handleThemeToggle}
+                className="px-3 py-1 bg-secondary text-secondary-foreground rounded hover:bg-secondary/80 transition"
+              >
+                {isDarkMode ? <Sun /> : <Moon />}
+              </button>
+            </div>
+            <SheetTitle>
+              <Link href="/">RaceNation</Link>
+            </SheetTitle>
+            <SheetDescription className="flex flex-col items-center">
+              <div className="flex flex-col w-[100%] items-center">
+                <NavigationMenu>
+                  <NavigationMenuList className="flex flex-col z-50">
+                    <NavigationMenuItem>
+                      <Link href="/team" legacyBehavior passHref>
+                        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                          {translations.navbar.blog}
+                        </NavigationMenuLink>
+                      </Link>
+                    </NavigationMenuItem>
+                    <NavigationMenuItem>
+                      <Link
+                        className="p-2 hover:text-purple"
+                        href="/team"
+                        legacyBehavior
+                        passHref
+                      >
+                        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                          {translations.navbar.recommendations}
+                        </NavigationMenuLink>
+                      </Link>
+                    </NavigationMenuItem>
+
+                    <div className="flex">
+                      <NavigationMenuItem className="flex flex-col">
+                        <NavigationMenuTrigger>Ranking</NavigationMenuTrigger>
+                        <NavigationMenuContent className="flex-flex-col">
+                          <ul className="flex flex-col p-8 bg-background border-0">
+                            <ListItem href="/courses/react" title="Top Speed">
+                              {translations.navbar.topSpeedDescription}
+                            </ListItem>
+                            <ListItem href="/courses/backend" title="Best Lap Times">
+                              {translations.navbar.bestLapDescription}
+                            </ListItem>
+                          </ul>
+                        </NavigationMenuContent>
+                      </NavigationMenuItem>
+                      <NavigationMenuItem className="flex flex-col">
+                        <NavigationMenuTrigger>Eventos</NavigationMenuTrigger>
+                        <NavigationMenuContent className="flex-flex-col">
+                          <ul className="flex flex-col p-8 bg-background border-0">
+                            <ListItem href="/courses/react" title="Drag Race">
+                              {translations.navbar.dragRaceDescription}
+                            </ListItem>
+                            <ListItem href="/courses/backend" title="Drift">
+                              {translations.navbar.driftDescription}
+                            </ListItem>
+                            <ListItem href="/courses/movil" title="Tuning Show">
+                              {translations.navbar.tuningShowDescription}
+                            </ListItem>
+                          </ul>
+                        </NavigationMenuContent>
+                      </NavigationMenuItem>
+                    </div>
+                  </NavigationMenuList>
+                </NavigationMenu>
+              </div>
+            </SheetDescription>
+          </SheetHeader>
+        </SheetContent>
+      </Sheet>
+
+      <NavigationMenu className="hidden lg:flex lg:gap-4">
+        <NavigationMenuList className="flex gap-4">
           <NavigationMenuItem>
             <Link href="/" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
@@ -45,19 +149,15 @@ export default function Navbar() {
           </NavigationMenuItem>
 
           <NavigationMenuItem>
-            <NavigationMenuTrigger>{translations.navbar.ranking}</NavigationMenuTrigger>
+            <NavigationMenuTrigger>
+              {translations.navbar.ranking}
+            </NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                <ListItem
-                  title="Top Speed"
-                  href="/ranking/top-speed"
-                >
+                <ListItem title="Top Speed" href="/ranking/top-speed">
                   {translations.navbar.topSpeedDescription}
                 </ListItem>
-                <ListItem
-                  title="Best Lap Times"
-                  href="/ranking/best-lap"
-                >
+                <ListItem title="Best Lap Times" href="/ranking/best-lap">
                   {translations.navbar.bestLapDescription}
                 </ListItem>
               </ul>
@@ -65,7 +165,9 @@ export default function Navbar() {
           </NavigationMenuItem>
 
           <NavigationMenuItem>
-            <NavigationMenuTrigger>{translations.navbar.upcomingEvents}</NavigationMenuTrigger>
+            <NavigationMenuTrigger>
+              {translations.navbar.upcomingEvents}
+            </NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                 <li className="row-span-3 relative h-full w-full">
@@ -78,12 +180,10 @@ export default function Navbar() {
                     className="rounded-md transition-all duration-300"
                   />
                 </li>
-
                 <ListItem
                   href="/events/drag-race"
                   title="Drag Race"
                   onMouseEnter={() => setHoveredOption("drag-race")}
-                  onMouseLeave={() => setHoveredOption("drag-race")}
                 >
                   {translations.navbar.dragRaceDescription}
                 </ListItem>
@@ -91,7 +191,6 @@ export default function Navbar() {
                   href="/events/drift"
                   title="Drift"
                   onMouseEnter={() => setHoveredOption("drift")}
-                  onMouseLeave={() => setHoveredOption("drag-race")}
                 >
                   {translations.navbar.driftDescription}
                 </ListItem>
@@ -99,7 +198,6 @@ export default function Navbar() {
                   href="/events/tuning-show"
                   title="Tuning Show"
                   onMouseEnter={() => setHoveredOption("tuning-show")}
-                  onMouseLeave={() => setHoveredOption("drag-race")}
                 >
                   {translations.navbar.tuningShowDescription}
                 </ListItem>
@@ -124,7 +222,7 @@ export default function Navbar() {
         </NavigationMenuList>
       </NavigationMenu>
 
-      <div className="flex gap-4">
+      <div className="hidden lg:flex gap-4">
         <button
           onClick={toggleLanguage}
           className="px-3 py-1 bg-primary text-primary-foreground rounded hover:bg-primary/80 transition"
@@ -139,10 +237,9 @@ export default function Navbar() {
         </button>
       </div>
     </nav>
-  )
+  );
 }
 
-// Componente ListItem para elementos en los menús de Ranking y Eventos
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
   React.ComponentPropsWithoutRef<"a">
@@ -162,6 +259,6 @@ const ListItem = React.forwardRef<
         </a>
       </NavigationMenuLink>
     </li>
-  )
-})
-ListItem.displayName = "ListItem"
+  );
+});
+ListItem.displayName = "ListItem";
