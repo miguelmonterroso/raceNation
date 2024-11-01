@@ -11,6 +11,9 @@
       "dragRaceDescription": "Competencias de velocidad en línea recta.",
       "driftDescription": "Demuestra habilidades de derrape y control.",
       "tuningShowDescription": "Muestra de autos modificados y personalizados."
+    },
+    "home": {
+      "headerTitle" : "Bienvenidos corredores"
     }
   },
   "en": {
@@ -25,6 +28,9 @@
       "dragRaceDescription": "Straight-line speed competitions.",
       "driftDescription": "Show off drifting skills and control.",
       "tuningShowDescription": "Showcase of modified and custom cars."
+    },
+    "home": {
+      "headerTitle" : "Welcome Racers"
     }
   }
 }

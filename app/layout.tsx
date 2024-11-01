@@ -31,7 +31,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex justify-center`}
       >
         <ThemeLanguageProvider>
-          <div className="w-full max-w-[1320px] flex flex-col justify-center p-6">
+          <div className="w-full max-w-[1320px] flex flex-col justify-center">
             <Navbar />
             {children}
           </div>
