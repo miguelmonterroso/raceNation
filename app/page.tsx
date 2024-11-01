@@ -7,7 +7,7 @@ export default function Home() {
 
   return (
     <div className="">
-      <h1>soon</h1>
+      <h1>HOLA COMO ESTAN</h1>
 
     </div>
   );
