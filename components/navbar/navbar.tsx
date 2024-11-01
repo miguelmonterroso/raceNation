@@ -1,40 +1,128 @@
 'use client'
-import { useThemeLanguage } from '../../context/ThemeLanguageContext';
-import Link from 'next/link';
-import { Languages, Moon, Sun } from 'lucide-react';
+import * as React from "react"
+import Link from 'next/link'
+import { useThemeLanguage } from '../../context/ThemeLanguageContext'
+import { Languages, Moon, Sun } from 'lucide-react'
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu"
+import Image from "next/image"
 
 export default function Navbar() {
-  const { toggleLanguage, isDarkMode, toggleTheme, translations } = useThemeLanguage();
+  const { toggleLanguage, isDarkMode, toggleTheme, translations } = useThemeLanguage()
+  const [hoveredOption, setHoveredOption] = React.useState<string | null>('drag-race')
 
-  // Verificar el cambio de estado en la consola
   const handleThemeToggle = () => {
-    toggleTheme();
-    console.log("Tema cambiado:", isDarkMode ? "Light Mode" : "Dark Mode");
-  };
+    toggleTheme()
+  }
+
+  const imageMap: { [key: string]: string } = {
+    "drag-race": "https://images.unsplash.com/photo-1693876735001-23d71f24a85d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "drift": "https://images.unsplash.com/photo-1530538604540-de0436821dc9?q=80&w=1950&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "tuning-show": "https://images.unsplash.com/photo-1620882796805-089504e2a068?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  }
 
   return (
     <nav className="flex items-center justify-between bg-background text-foreground shadow-md pb-4">
       <div className="text-lg font-semibold">
-        {translations.welcomeText}
+        RaceNation
       </div>
 
-      <div className="flex gap-4">
-        <Link href="/" className="hover:underline">
-          {translations.navbar.home}
-        </Link>
-        <Link href="/ranking" className="hover:underline">
-          {translations.navbar.ranking}
-        </Link>
-        <Link href="/upcoming-events" className="hover:underline">
-          {translations.navbar.upcomingEvents}
-        </Link>
-        <Link href="/blog" className="hover:underline">
-          {translations.navbar.blog}
-        </Link>
-        <Link href="/recommendations" className="hover:underline">
-          {translations.navbar.recommendations}
-        </Link>
-      </div>
+      <NavigationMenu>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <Link href="/" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                {translations.navbar.home}
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>{translations.navbar.ranking}</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                <ListItem
+                  title="Top Speed"
+                  href="/ranking/top-speed"
+                >
+                  {translations.navbar.topSpeedDescription}
+                </ListItem>
+                <ListItem
+                  title="Best Lap Times"
+                  href="/ranking/best-lap"
+                >
+                  {translations.navbar.bestLapDescription}
+                </ListItem>
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>{translations.navbar.upcomingEvents}</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                <li className="row-span-3 relative h-full w-full">
+                  <Image
+                    src={imageMap[hoveredOption ?? "drag-race"]}
+                    alt="eventImage"
+                    layout="fill"
+                    objectFit="cover"
+                    priority
+                    className="rounded-md transition-all duration-300"
+                  />
+                </li>
+
+                <ListItem
+                  href="/events/drag-race"
+                  title="Drag Race"
+                  onMouseEnter={() => setHoveredOption("drag-race")}
+                  onMouseLeave={() => setHoveredOption("drag-race")}
+                >
+                  {translations.navbar.dragRaceDescription}
+                </ListItem>
+                <ListItem
+                  href="/events/drift"
+                  title="Drift"
+                  onMouseEnter={() => setHoveredOption("drift")}
+                  onMouseLeave={() => setHoveredOption("drag-race")}
+                >
+                  {translations.navbar.driftDescription}
+                </ListItem>
+                <ListItem
+                  href="/events/tuning-show"
+                  title="Tuning Show"
+                  onMouseEnter={() => setHoveredOption("tuning-show")}
+                  onMouseLeave={() => setHoveredOption("drag-race")}
+                >
+                  {translations.navbar.tuningShowDescription}
+                </ListItem>
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+
+          <NavigationMenuItem>
+            <Link href="/blog" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                {translations.navbar.blog}
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <Link href="/recommendations" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                {translations.navbar.recommendations}
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
 
       <div className="flex gap-4">
         <button
@@ -51,5 +139,29 @@ export default function Navbar() {
         </button>
       </div>
     </nav>
-  );
+  )
 }
+
+// Componente ListItem para elementos en los menús de Ranking y Eventos
+const ListItem = React.forwardRef<
+  React.ElementRef<"a">,
+  React.ComponentPropsWithoutRef<"a">
+>(({ className, title, children, ...props }, ref) => {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <a
+          ref={ref}
+          className={`block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground ${className}`}
+          {...props}
+        >
+          <div className="text-sm font-medium leading-none">{title}</div>
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+            {children}
+          </p>
+        </a>
+      </NavigationMenuLink>
+    </li>
+  )
+})
+ListItem.displayName = "ListItem"

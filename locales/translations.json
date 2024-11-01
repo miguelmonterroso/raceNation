@@ -1,31 +1,30 @@
 {
-    "es": {
-      "welcomeText": "¡HOLA CORREDORES!",
-      "changeLangButton": "Cambiar a Inglés",
-      "changeThemeButton": "Cambiar a modo oscuro",
-      "navbar": {
-        "home": "Inicio",
-        "ranking": "Ranking",
-        "upcomingEvents": "Eventos",
-        "blog": "Blog",
-        "recommendations": "Recomendaciones"
-      },
-      "rankingTitle": "Clasificación",
-      "rankingDescription": "Consulta la clasificación actual de los autos."
-    },
-    "en": {
-      "welcomeText": "HELLO RACERS!",
-      "changeLangButton": "Switch to Spanish",
-      "changeThemeButton": "Switch to Dark Mode",
-      "navbar": {
-        "home": "Home",
-        "ranking": "Ranking",
-        "upcomingEvents": "Events",
-        "blog": "Blog",
-        "recommendations": "Recommendations"
-      },
-      "rankingTitle": "Ranking",
-      "rankingDescription": "View the current rankings of cars."
+  "es": {
+    "navbar": {
+      "home": "Inicio",
+      "ranking": "Ranking",
+      "upcomingEvents": "Próximos Eventos",
+      "blog": "Blog",
+      "recommendations": "Recomendaciones",
+      "topSpeedDescription": "Consulta los autos más rápidos en las pistas.",
+      "bestLapDescription": "Revisa los mejores tiempos de vuelta registrados.",
+      "dragRaceDescription": "Competencias de velocidad en línea recta.",
+      "driftDescription": "Demuestra habilidades de derrape y control.",
+      "tuningShowDescription": "Muestra de autos modificados y personalizados."
+    }
+  },
+  "en": {
+    "navbar": {
+      "home": "Home",
+      "ranking": "Ranking",
+      "upcomingEvents": "Upcoming Events",
+      "blog": "Blog",
+      "recommendations": "Recommendations",
+      "topSpeedDescription": "Check out the fastest cars on the track.",
+      "bestLapDescription": "Review the best lap times recorded.",
+      "dragRaceDescription": "Straight-line speed competitions.",
+      "driftDescription": "Show off drifting skills and control.",
+      "tuningShowDescription": "Showcase of modified and custom cars."
     }
   }
-  
+}
