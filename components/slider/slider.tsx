@@ -1,31 +1,100 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
-import 'swiper/css'
+import "swiper/css";
 import Image from "next/image";
+import { useThemeLanguage } from "@/context/ThemeLanguageContext";
+import { Button } from "../ui/button";
 
-export default function Slider(){
-    return(
-        <Swiper
-        spaceBetween={50}
-        slidesPerView={1}
-        loop={true}
-        className="h-[30vh]"
-        autoplay={{
-            delay: 3500,
-            disableOnInteraction: false,
-          }}
-          modules={[Autoplay]}
-      >
-            <SwiperSlide className="flex items-center justify-center">
-                <Image src="https://images.unsplash.com/photo-1487480769727-0c01c8d362b6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" layout="fill" objectFit="cover" priority alt="headerImage"/>
-            </SwiperSlide>
-            <SwiperSlide className="flex items-center justify-center">
-                <Image src="https://images.unsplash.com/photo-1670187670852-c002186baf04?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" layout="fill" objectFit="cover" priority alt="headerImage"/>
-            </SwiperSlide>
-            <SwiperSlide className="flex items-center justify-center">
-                <Image src="https://images.unsplash.com/photo-1597588560977-8d49c452a773?q=80&w=1933&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" layout="fill" objectFit="cover" priority alt="headerImage"/>
-            </SwiperSlide>
-        ...
-        </Swiper>
-    );
+export default function Slider() {
+  const { translations } = useThemeLanguage();
+
+  return (
+    <Swiper
+      spaceBetween={50}
+      slidesPerView={1}
+      loop={true}
+      className="h-[50vh] lg:h-[30vh]"
+      autoplay={{
+        delay: 3500,
+        disableOnInteraction: false,
+      }}
+      modules={[Autoplay]}
+    >
+      <SwiperSlide className="flex items-center justify-center relative">
+        <Image
+          src="https://images.unsplash.com/photo-1588998169494-594838e20cde?q=80&w=2090&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          layout="fill"
+          objectFit="cover"
+          priority
+          alt="headerImage"
+          className="relative"
+        />
+
+        <div className="absolute inset-0 bg-black opacity-40"></div>
+        <div className="absolute p-5 w-full h-full flex flex-col justify-center">
+          <div className="w-full lg:w-1/2 p-3 text-white">
+            <h2 className="font-bold text-3xl mb-2">
+              {translations.home.sliders.slider1.title}
+            </h2>
+            <p className="mb-3 text-lg pr-5">
+              {translations.home.sliders.slider1.subTitle}
+            </p>
+            <Button className="w-1/2 lg:w-1/4 font-bold">
+              {translations.home.sliders.slider1.button}
+            </Button>
+          </div>
+        </div>
+      </SwiperSlide>
+      <SwiperSlide className="flex items-center justify-center relative">
+        <Image
+          src="https://images.unsplash.com/photo-1670187670852-c002186baf04?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          layout="fill"
+          objectFit="cover"
+          priority
+          alt="headerImage"
+          className="relative"
+        />
+
+        <div className="absolute inset-0 bg-black opacity-40"></div>
+        <div className="absolute p-5 w-full h-full flex flex-col justify-center">
+          <div className="w-full lg:w-1/2 p-3 text-white">
+            <h2 className="font-bold text-3xl mb-2">
+              {translations.home.sliders.slider2.title}
+            </h2>
+            <p className="mb-3 text-lg pr-5">
+              {translations.home.sliders.slider2.subTitle}
+            </p>
+            <Button className="w-1/2 lg:w-1/4 font-bold">
+              {translations.home.sliders.slider2.button}
+            </Button>
+          </div>
+        </div>
+      </SwiperSlide>
+      <SwiperSlide className="flex items-center justify-center relative">
+        <Image
+          src="https://images.unsplash.com/photo-1611023924323-1e7e18f90c6f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          layout="fill"
+          objectFit="cover"
+          priority
+          alt="headerImage"
+          className="relative"
+        />
+
+        <div className="absolute inset-0 bg-black opacity-60"></div>
+        <div className="absolute p-5 w-full h-full flex flex-col justify-center">
+          <div className="w-full lg:w-1/2 p-3 text-white">
+            <h2 className="font-bold text-3xl mb-2">
+              {translations.home.sliders.slider3.title}
+            </h2>
+            <p className="mb-3 text-lg pr-5">
+              {translations.home.sliders.slider3.subTitle}
+            </p>
+            <Button className="w-1/2 lg:w-1/4 font-bold">
+              {translations.home.sliders.slider3.button}
+            </Button>
+          </div>
+        </div>
+      </SwiperSlide>
+    </Swiper>
+  );
 }

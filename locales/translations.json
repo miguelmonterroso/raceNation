@@ -13,7 +13,24 @@
       "tuningShowDescription": "Muestra de autos modificados y personalizados."
     },
     "home": {
-      "headerTitle" : "Bienvenidos corredores"
+      "headerTitle" : "Bienvenidos corredores",
+      "sliders" : {
+        "slider1": {
+          "title": "Descubre los Autos Más Rápidos",
+          "subTitle": "Consulta los récords de velocidad y los mejores tiempos de vuelta en cada categoría.",
+          "button": "Ver Rankings"
+        },
+        "slider2": {
+          "title": "Vive la Velocidad en Vivo",
+          "subTitle": "Entérate de los próximos eventos de drag, drift y tuning en tu área.",
+          "button": "Explorar Eventos"
+        },
+        "slider3": {
+          "title": "Únete a la Comunidad RaceNation",
+          "subTitle": "Explora artículos, consejos y noticias de la comunidad automovilística.",
+          "button": "Leer el Blog"
+        }
+      }
     }
   },
   "en": {
@@ -30,7 +47,24 @@
       "tuningShowDescription": "Showcase of modified and custom cars."
     },
     "home": {
-      "headerTitle" : "Welcome Racers"
+      "headerTitle" : "Welcome Racers",
+      "sliders" : {
+        "slider1": {
+          "title": "Discover the Fastest Cars",
+          "subTitle": "Check the speed records and best lap times in each category.",
+          "button": "View Rankings"
+        },
+        "slider2": {
+          "title": "Experience the Speed Live",
+          "subTitle": "Find out about upcoming drag, drift, and tuning events in your area.",
+          "button": "Explore Events"
+        },
+        "slider3": {
+          "title": "Join the RaceNation Community",
+          "subTitle": "Explore articles, tips, and news from the automotive community.",
+          "button": "Read Blog"
+        }
+      }
     }
   }
 }
