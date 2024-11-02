@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeLanguageProvider } from "../context/ThemeLanguageContext";
 import Navbar from "../components/navbar/navbar";
-
+import BlurFade from "@/components/ui/blur-fade";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -32,8 +32,11 @@ export default function RootLayout({
       >
         <ThemeLanguageProvider>
           <div className="w-full  flex flex-col justify-center">
+            <BlurFade delay={0.25} inView>
             <Navbar />
             {children}
+            </BlurFade>
+            
           </div>
           
         </ThemeLanguageProvider>
