@@ -16,32 +16,43 @@ const ThemeLanguageContext = createContext<ThemeLanguageContextProps | undefined
 
 export const ThemeLanguageProvider = ({ children }: { children: ReactNode }) => {
   const [language, setLanguage] = useState<Language>('es');
-  
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    const storedLanguage = localStorage.getItem('language') as Language;
-    const storedTheme = localStorage.getItem('isDarkMode') === 'true';
+    setIsClient(true);
 
-    if (storedLanguage) setLanguage(storedLanguage);
-    setIsDarkMode(storedTheme || true);
+    if (typeof window !== 'undefined') {
+      const storedLanguage = localStorage.getItem('language') as Language;
+      const storedTheme = localStorage.getItem('isDarkMode');
+      
+      if (storedLanguage) setLanguage(storedLanguage);
+      if (storedTheme !== null) setIsDarkMode(storedTheme === 'true');
+
+      document.documentElement.classList.add(storedTheme === 'true' ? 'dark' : 'light');
+      document.documentElement.classList.remove(storedTheme === 'true' ? 'light' : 'dark');
+    }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('language', language);
-  }, [language]);
+    if (isClient) {
+      localStorage.setItem('language', language);
+    }
+  }, [language, isClient]);
 
   useEffect(() => {
-    const root = document.documentElement;
-    if (isDarkMode) {
-      root.classList.add('dark');
-      root.classList.remove('light');
-    } else {
-      root.classList.add('light');
-      root.classList.remove('dark');
+    if (isClient) {
+      const root = document.documentElement;
+      if (isDarkMode) {
+        root.classList.add('dark');
+        root.classList.remove('light');
+      } else {
+        root.classList.add('light');
+        root.classList.remove('dark');
+      }
+      localStorage.setItem('isDarkMode', String(isDarkMode));
     }
-    localStorage.setItem('isDarkMode', String(isDarkMode));
-  }, [isDarkMode]);
+  }, [isDarkMode, isClient]);
 
   const toggleLanguage = () => {
     setLanguage((prevLanguage) => (prevLanguage === 'es' ? 'en' : 'es'));
@@ -50,6 +61,10 @@ export const ThemeLanguageProvider = ({ children }: { children: ReactNode }) => 
   const toggleTheme = () => {
     setIsDarkMode((prevMode) => !prevMode);
   };
+
+  if (!isClient) {
+    return null;
+  }
 
   return (
     <ThemeLanguageContext.Provider
