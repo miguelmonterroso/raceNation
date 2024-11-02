@@ -7,6 +7,7 @@ import BentoBox from "@/components/bentoBox/bentoBox";
 import Multi from "@/components/slider/multi/multi";
 import RankingTable from "@/components/rankingTable/rankingTable";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 export default function Home() {
   const { translations } = useThemeLanguage();
 
@@ -52,7 +53,9 @@ export default function Home() {
               <RankingTable/>
             </div>
             <div className="flex justify-center">
-              <Button>{translations.home.ranking.button}</Button>
+              <Link href="/ranking">
+                <Button>{translations.home.ranking.button}</Button>
+              </Link>
             </div>
           </BlurFade>
         </div>
