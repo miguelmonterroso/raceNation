@@ -4,21 +4,21 @@ import React from 'react';
 import Link from 'next/link';
 import { useThemeLanguage } from '../../context/ThemeLanguageContext';
 import { Facebook, Instagram, Twitter } from 'lucide-react';
+import BlurFade from '../ui/blur-fade';
 
 export default function Footer() {
   const { translations } = useThemeLanguage();
 
   return (
-    <footer className="bg-background text-foreground py-8">
-      <div className="container mx-auto grid gap-8 md:grid-cols-3">
+    <BlurFade delay={0.25} inView>
+    <footer className="bg-background text-foreground py-8 ">
+      <div className="container mx-auto grid gap-8 md:grid-cols-3 p-10 lg:p-0">
         
-        {/* RaceNation Description */}
         <div>
           <h2 className="text-2xl font-semibold">RaceNation</h2>
           <p className="mt-2 text-sm">{translations.footer.description}</p>
         </div>
         
-        {/* Quick Links */}
         <div>
           <h3 className="text-xl font-semibold">{translations.footer.quickLinks}</h3>
           <ul className="mt-2 space-y-1">
@@ -30,7 +30,6 @@ export default function Footer() {
           </ul>
         </div>
         
-        {/* Contact and Socials */}
         <div>
           <h3 className="text-xl font-semibold">{translations.footer.contact}</h3>
           <p className="mt-2 text-sm">{translations.footer.email}: contacto@racenation.com</p>
@@ -49,10 +48,10 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Footer Credits */}
       <div className="mt-8 text-center text-sm text-muted-foreground">
         © 2024 RaceNation. {translations.footer.rightsReserved}
       </div>
     </footer>
+    </BlurFade>
   );
 }

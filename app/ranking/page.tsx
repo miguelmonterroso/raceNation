@@ -1,17 +1,14 @@
-'use client';
+import Link from 'next/link';
 
-// import { useThemeLanguage } from '../../context/ThemeLanguageContext';
-
-export default function Ranking() {
-//   const { translations } = useThemeLanguage();
-
+export default function RankingPage() {
   return (
-    <div className="w-full">
-      <h1>{ "Ranking"}</h1>
-      <p>{ "View the current rankings of cars."}</p>
-      <div className="mt-2">
-        <p>Ranking content goes here...</p>
-      </div>
+    <div>
+      <h1>Explora el Ranking</h1>
+      <p>Selecciona una categoría para ver los rankings disponibles:</p>
+      <ul>
+        <li><Link href="/ranking/topSpeed">Top Speed</Link></li>
+        <li><Link href="/ranking/lapTime">Best Lap Times</Link></li>
+      </ul>
     </div>
   );
 }

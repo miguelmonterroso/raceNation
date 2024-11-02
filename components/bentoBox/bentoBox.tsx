@@ -18,7 +18,7 @@ export default function BentoBox() {
             name: translations.home.bentoBox.calendar.title,
             description: translations.home.bentoBox.calendar.subTitle,
             className: "col-span-3 lg:col-span-1",
-            href: "#",
+            href: "/events",
             cta: translations.home.bentoBox.calendar.cta,
             background: (
               <Calendar
@@ -33,7 +33,7 @@ export default function BentoBox() {
         Icon: Trophy,
         name:  translations.home.bentoBox.ranking.title,
         description: translations.home.bentoBox.ranking.subTitle,
-        href: "#",
+        href: "/ranking",
         cta: translations.home.bentoBox.ranking.cta,
         className: "col-span-3 lg:col-span-2",
         background: (<Globe className="left-10 top-[-100px] md:left-64 md:top-[-150px] lg:left-96" />),

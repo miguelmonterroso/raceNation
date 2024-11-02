@@ -41,7 +41,9 @@ export default function Navbar() {
 
   return (
     <nav className="flex items-center justify-between bg-background text-foreground shadow-md pb-4 lg:pb-3 px-4 p-6 mb-3">
-      <div className="text-lg font-semibold">RaceNation</div>
+      <Link href="/">
+        <div className="text-lg font-semibold">RaceNation</div>
+      </Link>
 
       <Sheet>
         <SheetTrigger asChild>
@@ -98,10 +100,10 @@ export default function Navbar() {
                         <NavigationMenuTrigger>Ranking</NavigationMenuTrigger>
                         <NavigationMenuContent className="flex-flex-col">
                           <ul className="flex flex-col p-8 bg-background border-0">
-                            <ListItem href="/courses/react" title="Top Speed">
+                            <ListItem href="/ranking/topSpeed" title="Top Speed">
                               {translations.navbar.topSpeedDescription}
                             </ListItem>
-                            <ListItem href="/courses/backend" title="Best Lap Times">
+                            <ListItem href="/ranking/lapTime" title="Best Lap Times">
                               {translations.navbar.bestLapDescription}
                             </ListItem>
                           </ul>
@@ -111,13 +113,13 @@ export default function Navbar() {
                         <NavigationMenuTrigger>Eventos</NavigationMenuTrigger>
                         <NavigationMenuContent className="flex-flex-col">
                           <ul className="flex flex-col p-8 bg-background border-0">
-                            <ListItem href="/courses/react" title="Drag Race">
+                            <ListItem href="/events/drag" title="Drag Race">
                               {translations.navbar.dragRaceDescription}
                             </ListItem>
-                            <ListItem href="/courses/backend" title="Drift">
+                            <ListItem href="/events/drift" title="Drift">
                               {translations.navbar.driftDescription}
                             </ListItem>
-                            <ListItem href="/courses/movil" title="Tuning Show">
+                            <ListItem href="/events/tuning" title="Tuning Show">
                               {translations.navbar.tuningShowDescription}
                             </ListItem>
                           </ul>
@@ -148,10 +150,10 @@ export default function Navbar() {
             </NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                <ListItem title="Top Speed" href="/ranking/top-speed">
+                <ListItem title="Top Speed" href="/ranking/topSpeed">
                   {translations.navbar.topSpeedDescription}
                 </ListItem>
-                <ListItem title="Best Lap Times" href="/ranking/best-lap">
+                <ListItem title="Best Lap Times" href="/ranking/lapTime">
                   {translations.navbar.bestLapDescription}
                 </ListItem>
               </ul>
@@ -175,7 +177,7 @@ export default function Navbar() {
                   />
                 </li>
                 <ListItem
-                  href="/events/drag-race"
+                  href="/events/drag"
                   title="Drag Race"
                   onMouseEnter={() => setHoveredOption("drag-race")}
                 >
@@ -189,7 +191,7 @@ export default function Navbar() {
                   {translations.navbar.driftDescription}
                 </ListItem>
                 <ListItem
-                  href="/events/tuning-show"
+                  href="/events/tuning"
                   title="Tuning Show"
                   onMouseEnter={() => setHoveredOption("tuning-show")}
                 >

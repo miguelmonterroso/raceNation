@@ -4,6 +4,7 @@ import "swiper/css";
 import Image from "next/image";
 import { useThemeLanguage } from "@/context/ThemeLanguageContext";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 export default function Slider() {
   const { translations } = useThemeLanguage();
@@ -39,9 +40,12 @@ export default function Slider() {
             <p className="mb-3 text-lg pr-5">
               {translations.home.sliders.slider1.subTitle}
             </p>
+            <Link href="/ranking">
             <Button className="w-1/2 lg:w-1/4 font-bold">
               {translations.home.sliders.slider1.button}
             </Button>
+            </Link>
+            
           </div>
         </div>
       </SwiperSlide>
@@ -64,9 +68,11 @@ export default function Slider() {
             <p className="mb-3 text-lg pr-5">
               {translations.home.sliders.slider2.subTitle}
             </p>
+            <Link href="/events">
             <Button className="w-1/2 lg:w-1/4 font-bold">
               {translations.home.sliders.slider2.button}
             </Button>
+            </Link>
           </div>
         </div>
       </SwiperSlide>

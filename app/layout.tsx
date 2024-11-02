@@ -6,6 +6,7 @@ import Navbar from "../components/navbar/navbar";
 import BlurFade from "@/components/ui/blur-fade";
 import Footer from "@/components/footer/footer";
 import { Separator } from "@/components/ui/separator";
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
