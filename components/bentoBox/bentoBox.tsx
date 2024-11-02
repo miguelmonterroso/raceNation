@@ -69,7 +69,7 @@ export default function BentoBox() {
 
     
   return (
-    <BentoGrid className="mt-10 mb-10">
+    <BentoGrid className="mt-10">
       {features.map((feature, idx) => (
         <BentoCard key={idx} {...feature} />
       ))}

@@ -52,6 +52,12 @@
           "subTitle": "Lee artículos sobre autos, eventos y más.",
           "cta": "Saber más"
         }
+      },
+      "upcomingEvents": {
+        "title": "Próximos eventos",
+        "subtitle": "Explora las próximas competencias en distintas categorías y no te pierdas la emoción de cada carrera.",
+        "rankingTitle": "Revisa el ranking actualizado de los autos más rápidos en cada categoría.",
+        "rankingSubtitle": "View the latest ranking of the fastest cars in each category."
       }
     }
   },
@@ -108,6 +114,12 @@
           "subTitle": "Read articles on cars, events, and more.",
           "cta": "Learn more"
         }
+      },
+      "upcomingEvents": {
+        "title": "Upcoming Events",
+        "subtitle": "Explore upcoming competitions across various categories and don’t miss out on the thrill of each race.",
+        "rankingTitle": "Check the Ranking",
+        "rankingSubtitle": "View the latest ranking of the fastest cars in each category."
       }
     }
   }
