@@ -3,6 +3,7 @@ import { ArrowRightIcon } from "@radix-ui/react-icons";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { ElementType } from "react-spring";
 
 const BentoGrid = ({
   children,
@@ -35,7 +36,7 @@ const BentoCard = ({
   name: string;
   className: string;
   background: ReactNode;
-  Icon: any;
+  Icon: ElementType;
   description: string;
   href: string;
   cta: string;
