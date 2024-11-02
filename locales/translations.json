@@ -30,6 +30,28 @@
           "subTitle": "Explora artículos, consejos y noticias de la comunidad automovilística.",
           "button": "Leer el Blog"
         }
+      },
+      "bentoBox": {
+        "calendar": {
+          "title": "Calendario de Eventos",
+          "subTitle": "Consulta las próximas fechas y planea tu participación.",
+          "cta": "Saber más"
+        },
+        "ranking": {
+          "title": "Ranking de Conductores y Autos",
+          "subTitle": "Descubre quiénes lideran en velocidad y tiempos.",
+          "cta": "Saber más"
+        },
+        "recommendations": {
+          "title": "Recomendaciones",
+          "subTitle": "Encuentra los mejores talleres y servicios para tu auto.",
+          "cta": "Saber más"
+        },
+        "blog": {
+          "title": "Explora el Blog",
+          "subTitle": "Lee artículos sobre autos, eventos y más.",
+          "cta": "Saber más"
+        }
       }
     }
   },
@@ -63,6 +85,28 @@
           "title": "Join the RaceNation Community",
           "subTitle": "Explore articles, tips, and news from the automotive community.",
           "button": "Read Blog"
+        }
+      },
+      "bentoBox": {
+        "calendar": {
+          "title": "Event Calendar",
+          "subTitle": "Check upcoming dates and plan your participation.",
+          "cta": "Learn more"
+        },
+        "ranking": {
+          "title": "Driver and Car Rankings",
+          "subTitle": "See who's leading in speed and times.",
+          "cta": "Learn more"
+        },
+        "recommendations": {
+          "title": "Recommendations",
+          "subTitle": "Find the best workshops and services for your car.",
+          "cta": "Learn more"
+        },
+        "blog": {
+          "title": "Explore the Blog",
+          "subTitle": "Read articles on cars, events, and more.",
+          "cta": "Learn more"
         }
       }
     }

@@ -40,7 +40,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="flex items-center justify-between bg-background text-foreground shadow-md pb-4 lg:pb-0 px-4 p-6 mb-3">
+    <nav className="flex items-center justify-between bg-background text-foreground shadow-md pb-4 lg:pb-3 px-4 p-6 mb-3">
       <div className="text-lg font-semibold">RaceNation</div>
 
       <Sheet>
