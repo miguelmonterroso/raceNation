@@ -4,6 +4,8 @@ import "./globals.css";
 import { ThemeLanguageProvider } from "../context/ThemeLanguageContext";
 import Navbar from "../components/navbar/navbar";
 import BlurFade from "@/components/ui/blur-fade";
+import Footer from "@/components/footer/footer";
+import { Separator } from "@/components/ui/separator";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -36,6 +38,8 @@ export default function RootLayout({
             <Navbar />
             {children}
             </BlurFade>
+            <Separator className="mt-10"/>
+            <Footer/>
             
           </div>
           

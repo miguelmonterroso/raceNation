@@ -13,8 +13,8 @@
       "tuningShowDescription": "Muestra de autos modificados y personalizados."
     },
     "home": {
-      "headerTitle" : "Bienvenidos corredores",
-      "sliders" : {
+      "headerTitle": "Bienvenidos corredores",
+      "sliders": {
         "slider1": {
           "title": "Descubre los Autos Más Rápidos",
           "subTitle": "Consulta los récords de velocidad y los mejores tiempos de vuelta en cada categoría.",
@@ -58,7 +58,20 @@
         "subtitle": "Explora las próximas competencias en distintas categorías y no te pierdas la emoción de cada carrera.",
         "rankingTitle": "Revisa el ranking actualizado de los autos más rápidos en cada categoría.",
         "rankingSubtitle": "View the latest ranking of the fastest cars in each category."
+      },
+      "ranking": {
+        "title": "Clasificación de Tiempos",
+        "subTitle": "Descubre los mejores tiempos y pilotos destacados en nuestras competencias. ¡Inspírate y sigue el ranking en tiempo real!",
+        "button": "Ver todos los Rankings"
       }
+    },
+    "footer": {
+      "description": "La plataforma donde los entusiastas de los autos encuentran su lugar para competir, aprender y conectarse.",
+      "quickLinks": "Enlaces Rápidos",
+      "contact": "Contacto",
+      "email": "Correo Electrónico",
+      "phone": "Teléfono",
+      "rightsReserved": "Todos los derechos reservados."
     }
   },
   "en": {
@@ -75,8 +88,8 @@
       "tuningShowDescription": "Showcase of modified and custom cars."
     },
     "home": {
-      "headerTitle" : "Welcome Racers",
-      "sliders" : {
+      "headerTitle": "Welcome Racers",
+      "sliders": {
         "slider1": {
           "title": "Discover the Fastest Cars",
           "subTitle": "Check the speed records and best lap times in each category.",
@@ -120,7 +133,20 @@
         "subtitle": "Explore upcoming competitions across various categories and don’t miss out on the thrill of each race.",
         "rankingTitle": "Check the Ranking",
         "rankingSubtitle": "View the latest ranking of the fastest cars in each category."
+      },
+      "ranking": {
+        "title": "Time Leaderboard",
+        "subTitle": "Explore the best lap times and top drivers in our competitions. Get inspired and follow the rankings in real time!",
+        "button": "View All Rankings"
       }
+    },
+    "footer": {
+      "description": "The platform where car enthusiasts find their place to compete, learn, and connect.",
+      "quickLinks": "Quick Links",
+      "contact": "Contact",
+      "email": "Email",
+      "phone": "Phone",
+      "rightsReserved": "All rights reserved."
     }
   }
 }
