@@ -26,12 +26,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="es">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex justify-center`}
       >
         <ThemeLanguageProvider>
-          <div className="w-full max-w-[1320px] flex flex-col justify-center">
+          <div className="w-full  flex flex-col justify-center">
             <Navbar />
             {children}
           </div>

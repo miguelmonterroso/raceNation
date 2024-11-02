@@ -2,7 +2,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { useThemeLanguage } from "../../context/ThemeLanguageContext";
-import { Languages, Moon, Sun, Menu, X } from "lucide-react";
+import { Languages, Moon, Sun, Menu } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -14,7 +14,6 @@ import {
 } from "@/components/ui/navigation-menu";
 import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetDescription,
   SheetHeader,
@@ -33,11 +32,11 @@ export default function Navbar() {
 
   const imageMap: { [key: string]: string } = {
     "drag-race":
-      "https://images.unsplash.com/photo-1693876735001-23d71f24a85d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1606073312738-bedd7bd45361?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     drift:
       "https://images.unsplash.com/photo-1530538604540-de0436821dc9?q=80&w=1950&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "tuning-show":
-      "https://images.unsplash.com/photo-1620882796805-089504e2a068?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1691285833490-272a431041d9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   };
 
   return (
@@ -53,11 +52,6 @@ export default function Navbar() {
 
         <SheetContent className="border-0 h-full flex items-center justify-center">
           <SheetHeader className="h-[35%] flex items-center justify-evenly">
-            <SheetClose asChild className="flex justify-center">
-              <button className="mt-4 w-full text-center text-primary underline">
-                <X />
-              </button>
-            </SheetClose>
             <div className="flex gap-4 mt-4">
               <button
                 onClick={toggleLanguage}

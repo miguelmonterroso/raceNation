@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div>
       <Slider/>
-      
+
       <h1>{translations.home.headerTitle}</h1>
 
     </div>

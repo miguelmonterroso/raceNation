@@ -12,6 +12,35 @@ body {
   }
 }
 
+.light ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.light ::-webkit-scrollbar-track {
+  background: #ffffff; 
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background-color: #292929; 
+  border-radius: 10px;
+  border: 2px solid #e0e0e0;
+}
+
+.dark ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #000000; 
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background-color: #555555; 
+  border-radius: 10px;
+  border: 2px solid #555555;
+}
 
 .light{
   --background: 0 0% 100%;
