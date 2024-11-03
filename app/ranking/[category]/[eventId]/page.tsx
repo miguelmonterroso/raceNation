@@ -1,7 +1,6 @@
 // /rankings/[category]/[eventId]/page.tsx
 'use client';
 
-import Image from 'next/image';
 import { eventData } from '../../data/data';
 import Multi from '@/components/slider/multi/multi';
 import RankingDataTable from '@/components/rankingTable/rankingTable';
