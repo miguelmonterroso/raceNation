@@ -21,7 +21,7 @@ export default function RankingPage() {
         {events.length > 0 ? (
           events.map(event => <Card key={event.id} {...event} />)
         ) : (
-          <p>No hay eventos próximos para esta categoría.</p>
+          <p>No hay categorias disponibles.</p>
         )}
       </div>
     </div>

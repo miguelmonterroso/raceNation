@@ -23,7 +23,7 @@ export default function Footer() {
           <h3 className="text-xl font-semibold">{translations.footer.quickLinks}</h3>
           <ul className="mt-2 space-y-1">
             <li><Link href="/">{translations.navbar.home}</Link></li>
-            <li><Link href="/upcoming-events">{translations.navbar.upcomingEvents}</Link></li>
+            <li><Link href="/events">{translations.navbar.upcomingEvents}</Link></li>
             <li><Link href="/ranking">{translations.navbar.ranking}</Link></li>
             <li><Link href="/blog">{translations.navbar.blog}</Link></li>
             <li><Link href="/recommendations">{translations.navbar.recommendations}</Link></li>
