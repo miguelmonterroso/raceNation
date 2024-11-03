@@ -76,7 +76,7 @@ export default function Navbar() {
                 <NavigationMenu>
                   <NavigationMenuList className="flex flex-col z-50">
                     <NavigationMenuItem>
-                      <Link href="/team" legacyBehavior passHref>
+                      <Link href="/blog" legacyBehavior passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                           {translations.navbar.blog}
                         </NavigationMenuLink>
@@ -85,7 +85,7 @@ export default function Navbar() {
                     <NavigationMenuItem>
                       <Link
                         className="p-2 hover:text-purple"
-                        href="/team"
+                        href="/recommendations"
                         legacyBehavior
                         passHref
                       >
