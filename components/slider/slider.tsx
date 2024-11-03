@@ -95,9 +95,11 @@ export default function Slider() {
             <p className="mb-3 text-lg pr-5">
               {translations.home.sliders.slider3.subTitle}
             </p>
+            <Link href="/blog">
             <Button className="w-1/2 lg:w-1/4 font-bold">
               {translations.home.sliders.slider3.button}
             </Button>
+            </Link>
           </div>
         </div>
       </SwiperSlide>

@@ -6,6 +6,7 @@ import Navbar from "../components/navbar/navbar";
 import BlurFade from "@/components/ui/blur-fade";
 import Footer from "@/components/footer/footer";
 import { Separator } from "@/components/ui/separator";
+import DynamicBreadcrumb from "@/components/breadCrumb/breadCrumb";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -37,6 +38,7 @@ export default function RootLayout({
           <div className="w-full  flex flex-col justify-center">
             <BlurFade delay={0.25} inView>
             <Navbar />
+            <DynamicBreadcrumb/>
             {children}
             </BlurFade>
             <Separator className="mt-10"/>

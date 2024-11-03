@@ -42,7 +42,7 @@ export default function BentoBox() {
         Icon: Wrench,
         name: translations.home.bentoBox.recommendations.title,
         description: translations.home.bentoBox.recommendations.subTitle,
-        href: "#",
+        href: "/recommendations",
         cta: translations.home.bentoBox.recommendations.cta,
         className: "col-span-3 lg:col-span-2",
         background: (<Orbit/>),
@@ -51,7 +51,7 @@ export default function BentoBox() {
         Icon: Notebook,
         name: translations.home.bentoBox.blog.title,
         description: translations.home.bentoBox.blog.subTitle,
-        href: "#",
+        href: "/blog",
         cta: translations.home.bentoBox.blog.cta,
         className: "col-span-3 lg:col-span-1",
         background: (<div className="relative">
