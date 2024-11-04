@@ -86,7 +86,7 @@ export default function EventDetailPage({ params }: { params: { category: string
             </p>
             <p className="text-gray-500 mb-4">Fecha: {event.date}</p>
           </div>
-          <Image src={event.image} alt={event.title} width={500} height={500} className='max-h-80'/>
+          <Image src={event.image} alt={event.title} width={500} height={500} className='max-h-80 rounded-xl'/>
         </div>
         <h2 className='text-4xl font-bold mt-10 mb-10 pl-12 pr-12'>Aquí te dejamos los resultados de la fecha:</h2>
         <RankingDataTable/>
@@ -107,6 +107,7 @@ export default function EventDetailPage({ params }: { params: { category: string
           />
         )}
 
+        <h2 className='font-bold text-5xl mb-4 pl-12 pr-12 mt-5'>Eventos que podrian interesarte:</h2>
         <Multi/>
       </div>
     </BlurFade>
