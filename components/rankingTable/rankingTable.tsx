@@ -245,7 +245,7 @@ export default function RankingDataTable() {
         </TableBody>
       </Table>
 
-      <div id="hidden-table" style={{ display: "none", position: "absolute", bottom: "-9999px", minWidth: '800px' }}>
+      <div id="hidden-table" style={{ display: "none", position: "absolute", bottom: "-9999px", minWidth: '1300px' }}>
         <div className="p-5 mb-3 flex flex-wrap items-center justify-between">
           <p className="text-5xl font-semibold mb-5">RaceNation</p>
           <p className="font-bold text-3xl">Resultados Finales Top 10 MotorSport - 2024-12-01</p>
