@@ -36,7 +36,17 @@ const rankingData = [
   { name: "Ana Torres", car: "Toyota Supra", time: "25.30", brand: "Toyota" },
   { name: "Juan López", car: "Mazda RX-7", time: "26.12", brand: "Mazda" },
   { name: "Luis Romero", car: "Peugeot 508 PSE", time: "27.45", brand: "Peugeot" },
-  { name: "Elena García", car: "Subaru WRX STI", time: "22.89", brand: "Subaru" },
+  { name: "Miguel Monterroso", car: "Subaru WRX", time: "21.89", brand: "Subaru" },
+  { name: "Pablo Monterroso García", car: "Subaru WRX STI", time: "22.89", brand: "Subaru" },
+  { name: "Alejandro Mendez", car: "Subaru WRX STI", time: "23.89", brand: "Subaru" },
+  { name: "Anderson García", car: "Subaru WRX STI", time: "34.89", brand: "Subaru" },
+  { name: "Alex García", car: "Subaru WRX STI", time: "25.89", brand: "Subaru" },
+  { name: "Elena García", car: "Subaru WRX STI", time: "25.89", brand: "Subaru" },
+  { name: "Elena García", car: "Subaru WRX STI", time: "25.89", brand: "Subaru" },
+  { name: "Elena García", car: "Subaru WRX STI", time: "25.89", brand: "Subaru" },
+  { name: "Elena García", car: "Subaru WRX STI", time: "25.89", brand: "Subaru" },
+  { name: "Elena García", car: "Subaru WRX STI", time: "25.89", brand: "Subaru" },
+
   { name: "Sofía Morales", car: "Mitsubishi Lancer Evolution", time: "23.34", brand: "Mitsubishi" },
   { name: "Daniela Ríos", car: "Acura NSX", time: "21.76", brand: "Acura" },
   { name: "Miguel Castro", car: "Alfa Romeo Giulia Quadrifoglio", time: "24.99", brand: "Alfa Romeo" },
@@ -235,7 +245,7 @@ export default function RankingDataTable() {
         </TableBody>
       </Table>
 
-      <div id="hidden-table" style={{ display: "none", position: "absolute", bottom: "-9999px", minWidth: '1320px' }}>
+      <div id="hidden-table" style={{ display: "none", position: "absolute", bottom: "-9999px", minWidth: '800px' }}>
         <div className="p-5 mb-3 flex flex-wrap items-center justify-between">
           <p className="text-5xl font-semibold mb-5">RaceNation</p>
           <p className="font-bold text-3xl">Resultados Finales Top 10 MotorSport - 2024-12-01</p>
