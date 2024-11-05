@@ -31,7 +31,7 @@ type RankingData = {
 };
 
 interface eventProps {
-  event: string;
+  event?: string;
 }
 
 const rankingData = [
