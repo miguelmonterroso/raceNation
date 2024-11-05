@@ -89,7 +89,7 @@ export default function EventDetailPage({ params }: { params: { category: string
           <Image src={event.image} alt={event.title} width={500} height={500} className='max-h-80 rounded-xl'/>
         </div>
         <h2 className='text-4xl font-bold mt-10 mb-10 pl-12 pr-12'>Aquí te dejamos los resultados de la fecha:</h2>
-        <RankingDataTable/>
+        <RankingDataTable event={`${event.title} - ${event.title}`}/>
 
         <div className="text-center mt-10 mb-10">
           <Button onClick={() => setIsLightboxOpen(true)}>

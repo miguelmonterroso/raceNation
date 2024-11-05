@@ -1,5 +1,5 @@
 import * as React from "react";
-import html2canvas from "html2canvas"; // Importa html2canvas
+import html2canvas from "html2canvas";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -10,7 +10,6 @@ import {
 } from "@tanstack/react-table";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
-// import NumberTicker from "../ui/number-ticker";
 import brands from '../../data/carBrands/brands.json';
 
 import {
@@ -30,6 +29,10 @@ type RankingData = {
   time: string;
   brand: string;
 };
+
+interface eventProps {
+  event: string;
+}
 
 const rankingData = [
   { name: "Carlos Pérez", car: "Nissan GT-R", time: "24.56", brand: "Nissan" },
@@ -105,7 +108,6 @@ export const columns: ColumnDef<RankingData>[] = [
   {
     accessorKey: "time",
     header: "Tiempo",
-    // cell: ({ row }) => <NumberTicker value={row.getValue("time")} decimalPlaces={2} />,
   },
   {
     accessorKey: "brand",
@@ -118,7 +120,7 @@ export const columns: ColumnDef<RankingData>[] = [
   },
 ];
 
-export default function RankingDataTable() {
+export default function RankingDataTable({ event }: eventProps) {
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [nameFilter, setNameFilter] = React.useState<string>("");
 
@@ -162,7 +164,7 @@ export default function RankingDataTable() {
   const downloadTableAsJpeg = () => {
     const hiddenTableElement = document.getElementById("hidden-table");
     if (hiddenTableElement) {
-      hiddenTableElement.style.display = "block"; // Mostrar la tabla expandida temporalmente
+      hiddenTableElement.style.display = "block"; 
 
       setTimeout(() => {
         html2canvas(hiddenTableElement, { backgroundColor: "black", scale: 2 }).then((canvas) => {
@@ -171,11 +173,14 @@ export default function RankingDataTable() {
           link.download = "ranking_table.jpeg";
           link.click();
 
-          hiddenTableElement.style.display = "none"; // Ocultar la tabla después de la captura
+          hiddenTableElement.style.display = "none"; 
         });
       }, 100);
     }
   };
+
+  const dataForCapture = sortedAndFilteredData.slice(0, 10);
+
 
   return (
     <div className="w-full overflow-x-auto p-3 lg:p-0">
@@ -203,11 +208,10 @@ export default function RankingDataTable() {
           </Select>
 
           <Button onClick={downloadTableAsJpeg}>
-            Descargar Tabla en JPEG
+            Descargar Resultados
         </Button>
         </div>
       </div>
-
 
       
       <Table>
@@ -245,10 +249,10 @@ export default function RankingDataTable() {
         </TableBody>
       </Table>
 
-      <div id="hidden-table" style={{ display: "none", position: "absolute", bottom: "-9999px", minWidth: '1300px' }}>
+      <div id="hidden-table" style={{ display: "none", position: "absolute", bottom: "-9999px", minWidth: '1500px', minHeight: '700px' }}>
         <div className="p-5 mb-3 flex flex-wrap items-center justify-between">
           <p className="text-5xl font-semibold mb-5">RaceNation</p>
-          <p className="font-bold text-3xl">Resultados Finales Top 10 MotorSport - 2024-12-01</p>
+          <p className="font-bold text-3xl">{event}</p>
         </div>
         <Table>
           <TableHeader>
@@ -265,14 +269,14 @@ export default function RankingDataTable() {
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id}>
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </TableCell>
-                  ))}
+            {dataForCapture.length ? (
+              dataForCapture.map((row, index) => (
+                <TableRow key={index}>
+                  <TableCell>{index + 1}</TableCell>
+                  <TableCell>{row.name}</TableCell>
+                  <TableCell>{row.car}</TableCell>
+                  <TableCell>{row.time}</TableCell>
+                  <TableCell>{row.brand}</TableCell>
                 </TableRow>
               ))
             ) : (
