@@ -1,11 +1,12 @@
 import * as React from "react";
+import html2canvas from "html2canvas"; // Importa html2canvas
 import {
   ColumnDef,
   ColumnFiltersState,
   getCoreRowModel,
   getFilteredRowModel,
   useReactTable,
-  flexRender
+  flexRender,
 } from "@tanstack/react-table";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
@@ -21,6 +22,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Button } from "../ui/button";
 
 type RankingData = {
   name: string;
@@ -29,24 +31,53 @@ type RankingData = {
   brand: string;
 };
 
-const rankingData: RankingData[] = [
+const rankingData = [
   { name: "Carlos Pérez", car: "Nissan GT-R", time: "24.56", brand: "Nissan" },
   { name: "Ana Torres", car: "Toyota Supra", time: "25.30", brand: "Toyota" },
   { name: "Juan López", car: "Mazda RX-7", time: "26.12", brand: "Mazda" },
-  { name: "Juan López", car: "Mazda RX-7", time: "23.12", brand: "Mazda" },
-  { name: "Juan López", car: "Mazda RX-7", time: "21.12", brand: "Mazda" },
-  { name: "Juan López", car: "Mazda RX-7", time: "24.12", brand: "Mazda" },
-  { name: "Carlos Pérez", car: "Nissan GT-R", time: "13.56", brand: "Nissan" },
-  { name: "Juan Pérez", car: "Nissan GT-R", time: "11.56", brand: "Nissan" },
-  { name: "Jose Pérez", car: "Nissan GT-R", time: "22.56", brand: "Nissan" },
-  { name: "Oscar Pérez", car: "Nissan GT-R", time: "19.56", brand: "Nissan" },
-
-
-  { name: "Oscar Pérez", car: "Nissan GT-R", time: "19.56", brand: "Peugeot" },
-  { name: "Oscar Pérez", car: "Nissan GT-R", time: "19.56", brand: "Subaru" },
-
-
+  { name: "Luis Romero", car: "Peugeot 508 PSE", time: "27.45", brand: "Peugeot" },
+  { name: "Elena García", car: "Subaru WRX STI", time: "22.89", brand: "Subaru" },
+  { name: "Sofía Morales", car: "Mitsubishi Lancer Evolution", time: "23.34", brand: "Mitsubishi" },
+  { name: "Daniela Ríos", car: "Acura NSX", time: "21.76", brand: "Acura" },
+  { name: "Miguel Castro", car: "Alfa Romeo Giulia Quadrifoglio", time: "24.99", brand: "Alfa Romeo" },
+  { name: "Felipe López", car: "Aston Martin DBS Superleggera", time: "20.45", brand: "Aston Martin" },
+  { name: "Lucía Sánchez", car: "Audi R8", time: "22.16", brand: "Audi" },
+  { name: "Fernando Ruiz", car: "BMW M5 Competition", time: "23.78", brand: "BMW" },
+  { name: "Laura Hernández", car: "Bugatti Chiron Super Sport", time: "18.92", brand: "Bugatti" },
+  { name: "Raúl Vargas", car: "Buick Regal GS", time: "28.45", brand: "Buick" },
+  { name: "Cristina Rivera", car: "Cadillac CT5-V Blackwing", time: "26.78", brand: "Cadillac" },
+  { name: "Tomás Cabrera", car: "Chevrolet Corvette Z06", time: "23.05", brand: "Chevrolet" },
+  { name: "Adriana Flores", car: "Citroën DS3 Racing", time: "27.22", brand: "Citroën" },
+  { name: "Luis Vargas", car: "Chrysler 300 SRT8", time: "28.15", brand: "Chrysler" },
+  { name: "Santiago Ramírez", car: "Dacia Sandero RS", time: "29.89", brand: "Dacia" },
+  { name: "Alejandro Vega", car: "Dodge Challenger Hellcat", time: "20.98", brand: "Dodge" },
+  { name: "Claudia Márquez", car: "Ferrari 812 Superfast", time: "19.67", brand: "Ferrari" },
+  { name: "Andrés León", car: "Fiat 124 Spider Abarth", time: "27.01", brand: "Fiat" },
+  { name: "Javier Herrera", car: "Ford Mustang Shelby GT500", time: "22.34", brand: "Ford" },
+  { name: "María Carrillo", car: "GMC Sierra Denali", time: "28.67", brand: "GMC" },
+  { name: "Sergio Medina", car: "Honda Civic Type R", time: "25.12", brand: "Honda" },
+  { name: "Natalia Gómez", car: "Hyundai i30 N", time: "26.98", brand: "Hyundai" },
+  { name: "Pedro Moreno", car: "Infiniti Q60 Red Sport", time: "24.01", brand: "Infiniti" },
+  { name: "Francisco Luna", car: "Jaguar F-Type SVR", time: "22.45", brand: "Jaguar" },
+  { name: "Patricia Campos", car: "Jeep Grand Cherokee Trackhawk", time: "25.56", brand: "Jeep" },
+  { name: "Ignacio Cortés", car: "Kia Stinger GT", time: "27.77", brand: "Kia" },
+  { name: "Valeria Paredes", car: "Land Rover Range Rover SVAutobiography", time: "28.54", brand: "Land Rover" },
+  { name: "David Pérez", car: "Lexus LC 500", time: "23.65", brand: "Lexus" },
+  { name: "Juan Aguilar", car: "Maserati Quattroporte GTS", time: "24.88", brand: "Maserati" },
+  { name: "Oscar Núñez", car: "McLaren 720S", time: "19.78", brand: "McLaren" },
+  { name: "Verónica Salinas", car: "Mercedes-Benz AMG GT R", time: "21.34", brand: "Mercedes Benz" },
+  { name: "Manuel Flores", car: "Opel Astra OPC", time: "28.12", brand: "Opel" },
+  { name: "Renata Ortiz", car: "Porsche 911 Turbo S", time: "19.56", brand: "Porsche" },
+  { name: "Diego Castillo", car: "Renault Megane RS", time: "26.45", brand: "Renault" },
+  { name: "Fernanda Reyes", car: "Škoda Octavia vRS", time: "27.89", brand: "Škoda" },
+  { name: "Héctor Díaz", car: "Rolls Royce Wraith", time: "28.98", brand: "Rolls Royce" },
+  { name: "Roberto Navarro", car: "Saab 9-3 Turbo X", time: "27.76", brand: "Saab" },
+  { name: "Daniela González", car: "Suzuki Swift Sport", time: "28.23", brand: "Suzuki" },
+  { name: "Rafael Peña", car: "Tesla Model S Plaid", time: "20.12", brand: "Tesla" },
+  { name: "Gabriela Cruz", car: "Volvo S60 Polestar", time: "27.54", brand: "Volvo" },
+  { name: "Eduardo Soto", car: "Volkswagen Golf R", time: "26.34", brand: "Volkswagen" }
 ];
+
 
 const getBrandSvg = (brand: string): string => {
   const brandData = (brands as Record<string, { svg: string }>)[brand];
@@ -81,7 +112,6 @@ export default function RankingDataTable() {
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [nameFilter, setNameFilter] = React.useState<string>("");
 
-  // Aplicamos el filtro y ordenamos por tiempo
   const sortedAndFilteredData = React.useMemo(() => {
     return rankingData
       .filter((item) =>
@@ -119,6 +149,18 @@ export default function RankingDataTable() {
     ]);
   };
 
+  const downloadTableAsJpeg = () => {
+    const tableElement = document.getElementById("ranking-table");
+    if (tableElement) {
+      html2canvas(tableElement, { backgroundColor: "#black" }).then((canvas) => {
+        const link = document.createElement("a");
+        link.href = canvas.toDataURL("image/jpeg", 1.0);
+        link.download = "ranking_table.jpeg";
+        link.click();
+      });
+    }
+  };
+
   return (
     <div className="w-full overflow-x-auto">
       <div className="flex gap-4 py-4 p-2 lg:pl-12 flex-col md:flex-row lg:flex-row lg:items-center">
@@ -144,25 +186,10 @@ export default function RankingDataTable() {
             </SelectContent>
           </Select>
 
-          <Select onValueChange={handleBrandFilterChange}>
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Categoria" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>Categorias:</SelectLabel>
-                <SelectItem value="all">Todas las categorias</SelectItem>
-                {[...new Set(rankingData.map((item) => item.brand))].map((brand) => (
-                  <SelectItem key={brand} value={brand}>{brand}</SelectItem>
-                ))}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
         </div>
-       
       </div>
 
-      <Table>
+      <Table id="ranking-table">
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
@@ -196,6 +223,12 @@ export default function RankingDataTable() {
           )}
         </TableBody>
       </Table>
+      <div className="flex items-center justify-center mt-4">
+        <Button onClick={downloadTableAsJpeg}>
+            Descargar Tabla en JPEG
+        </Button>
+      </div>
+
     </div>
   );
 }
