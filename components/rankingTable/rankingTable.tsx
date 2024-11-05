@@ -10,7 +10,7 @@ import {
 } from "@tanstack/react-table";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
-import NumberTicker from "../ui/number-ticker";
+// import NumberTicker from "../ui/number-ticker";
 import brands from '../../data/carBrands/brands.json';
 
 import {
@@ -95,7 +95,7 @@ export const columns: ColumnDef<RankingData>[] = [
   {
     accessorKey: "time",
     header: "Tiempo",
-    cell: ({ row }) => <NumberTicker value={row.getValue("time")} decimalPlaces={2} />,
+    // cell: ({ row }) => <NumberTicker value={row.getValue("time")} decimalPlaces={2} />,
   },
   {
     accessorKey: "brand",
@@ -150,19 +150,25 @@ export default function RankingDataTable() {
   };
 
   const downloadTableAsJpeg = () => {
-    const tableElement = document.getElementById("ranking-table");
-    if (tableElement) {
-      html2canvas(tableElement, { backgroundColor: "#black" }).then((canvas) => {
-        const link = document.createElement("a");
-        link.href = canvas.toDataURL("image/jpeg", 1.0);
-        link.download = "ranking_table.jpeg";
-        link.click();
-      });
+    const hiddenTableElement = document.getElementById("hidden-table");
+    if (hiddenTableElement) {
+      hiddenTableElement.style.display = "block"; // Mostrar la tabla expandida temporalmente
+
+      setTimeout(() => {
+        html2canvas(hiddenTableElement, { backgroundColor: "black", scale: 2 }).then((canvas) => {
+          const link = document.createElement("a");
+          link.href = canvas.toDataURL("image/jpeg", 1.0);
+          link.download = "ranking_table.jpeg";
+          link.click();
+
+          hiddenTableElement.style.display = "none"; // Ocultar la tabla después de la captura
+        });
+      }, 100);
     }
   };
 
   return (
-    <div className="w-full overflow-x-auto">
+    <div className="w-full overflow-x-auto p-3 lg:p-0">
       <div className="flex gap-4 py-4 p-2 lg:pl-12 flex-col md:flex-row lg:flex-row lg:items-center">
         <Input
           placeholder="Buscar por nombre..."
@@ -186,10 +192,15 @@ export default function RankingDataTable() {
             </SelectContent>
           </Select>
 
+          <Button onClick={downloadTableAsJpeg}>
+            Descargar Tabla en JPEG
+        </Button>
         </div>
       </div>
 
-      <Table id="ranking-table">
+
+      
+      <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
@@ -223,10 +234,47 @@ export default function RankingDataTable() {
           )}
         </TableBody>
       </Table>
-      <div className="flex items-center justify-center mt-4">
-        <Button onClick={downloadTableAsJpeg}>
-            Descargar Tabla en JPEG
-        </Button>
+
+      <div id="hidden-table" style={{ display: "none", position: "absolute", bottom: "-9999px", minWidth: '1320px' }}>
+        <div className="p-5 mb-3 flex flex-wrap items-center justify-between">
+          <p className="text-5xl font-semibold mb-5">RaceNation</p>
+          <p className="font-bold text-3xl">Resultados Finales Top 10 MotorSport - 2024-12-01</p>
+        </div>
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <TableHead key={header.id}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(header.column.columnDef.header, header.getContext())}
+                  </TableHead>
+                ))}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows?.length ? (
+              table.getRowModel().rows.map((row) => (
+                <TableRow key={row.id}>
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={columns.length} className="h-24 text-center">
+                  No results.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+        
       </div>
 
     </div>

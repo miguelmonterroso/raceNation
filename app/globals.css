@@ -127,6 +127,9 @@ body {
 
 }
 
+.hidden-during-capture {
+  display: none;
+}
 
 @layer base {
   * {
