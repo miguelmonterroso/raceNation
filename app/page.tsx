@@ -8,6 +8,7 @@ import Multi from "@/components/slider/multi/multi";
 import RankingTable from "@/components/rankingTable/rankingTable";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+
 export default function Home() {
   const { translations } = useThemeLanguage();
 
@@ -35,7 +36,7 @@ export default function Home() {
                 {translations.home.upcomingEvents.subtitle}
               </p>
             </div>
-            <Multi/>
+            <Multi />
           </BlurFade>
         </div>
 
@@ -49,8 +50,30 @@ export default function Home() {
                 {translations.home.ranking.subTitle}
               </p>
             </div>
-            <div className="p-3">
-              <RankingTable/>
+            <div className="mt-[-30px] lg:p-3">
+              <RankingTable
+                hideFilters
+                data={[
+                  {
+                    name: "Carlos Pérez",
+                    car: "Nissan GT-R",
+                    time: "24.56",
+                    brand: "Nissan",
+                  },
+                  {
+                    name: "Ana Torres",
+                    car: "Toyota Supra",
+                    time: "25.30",
+                    brand: "Toyota",
+                  },
+                  {
+                    name: "Juan López",
+                    car: "Mazda RX-7",
+                    time: "26.12",
+                    brand: "Mazda",
+                  },
+                ]}
+              />
             </div>
             <div className="flex justify-center">
               <Link href="/ranking">

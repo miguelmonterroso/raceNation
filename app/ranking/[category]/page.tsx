@@ -3,6 +3,7 @@
 
 import Card from '@/components/card/card';
 import BlurFade from '@/components/ui/blur-fade';
+import { useThemeLanguage } from '@/context/ThemeLanguageContext';
 
 const eventData = {
   topSpeed: [
@@ -18,19 +19,25 @@ const eventData = {
 };
 
 export default function RankingCategoryPage({ params }: { params: { category: string } }) {
+  const { translations } = useThemeLanguage();
+
   const { category } = params;
 
   const events = eventData[category as keyof typeof eventData] || [];
+  
+  const categoryTranslated = category === "topSpeed" 
+  ? translations.rankingPage.categories.Drag.header 
+  : translations.rankingPage.categories.Circuit.header;
 
   return (
     <BlurFade delay={0.25} inView>
     <div className='p-12 mt-10'>
-      <h1 className='font-bold text-5xl mb-10'>Rankings de categoria {category}</h1>
+      <h1 className='font-bold text-5xl mb-10'>{categoryTranslated}</h1>
       <div className="flex gap-5 flex-wrap justify-center">
         {events.length > 0 ? (
           events.map(event => <Card key={event.id} {...event} />)
         ) : (
-          <p>No hay eventos próximos para esta categoría.</p>
+          <p>{translations.rankingPage.noResults}</p>
         )}
       </div>
     </div>

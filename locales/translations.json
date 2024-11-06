@@ -65,6 +65,43 @@
         "button": "Ver todos los Rankings"
       }
     },
+    "rankingPage": {
+      "title": "Explora el Ranking",
+      "subTitle": "Selecciona una categoria para ver los rankings disponibles:",
+      "noResults": "No hay categorias disponibles.",
+      "categories": {
+        "Drag": {
+          "title": "Aceleracion",
+          "subtitle": "Todos los resultados de eventos de drag",
+          "header": "Rankings de categoria Aceleracion"
+        },
+        "Circuit": {
+          "title": "Circuito",
+          "subtitle": "Todos los resultados de eventos de circuito",
+          "header": "Rankings de categoria Circuito"
+        }
+      }
+    },
+    "rankingEventPage": {
+      "date": "Fecha",
+      "results": "Aquí te dejamos los resultados de la fecha:",
+      "pictures": "Ver fotos del evento",
+      "upcomingEvents": "Eventos que podrian interesarte:",
+      "notFound": "Evento no encontrado"
+    },
+    "table": {
+      "filter": "Buscar por nombre...",
+      "brands": "Marcas",
+      "allBrands": "Todas las marcas",
+      "download": "Descargar Resultados",
+      "tableHeaders": {
+        "position": "Posición",
+        "name": "Nombre",
+        "car": "Auto",
+        "time": "Tiempo",
+        "brand": "Marca"
+      }
+    },
     "footer": {
       "description": "La plataforma donde los entusiastas de los autos encuentran su lugar para competir, aprender y conectarse.",
       "quickLinks": "Enlaces Rápidos",
@@ -138,6 +175,43 @@
         "title": "Time Leaderboard",
         "subTitle": "Explore the best lap times and top drivers in our competitions. Get inspired and follow the rankings in real time!",
         "button": "View All Rankings"
+      }
+    },
+    "rankingPage": {
+      "title": "Explore the Ranking",
+      "subTitle": "Select a category to view available rankings:",
+      "noResults": "There are no available categories.",
+      "categories": {
+        "Drag": {
+          "title": "Drag",
+          "subtitle": "Results of the drag events",
+          "header": "Rankings for Drag Category"
+        },
+        "Circuit": {
+          "title": "Circuit",
+          "subtitle": "Results of the Circuit events",
+          "header": "Rankings for Circuit Category"
+        }
+      }
+    },
+    "rankingEventPage": {
+      "date": "Date",
+      "results": "Here are the results of the event date:",
+      "pictures": "View event photos",
+      "upcomingEvents": "Events you might be interested in:",
+      "notFound": "Event not found"
+    },
+    "table": {
+      "filter": "Search by name...",
+      "brands": "Brands",
+      "allBrands": "All brands",
+      "download": "Download Results",
+      "tableHeaders": {
+        "position": "Position",
+        "name": "Name",
+        "car": "Car",
+        "time": "Time",
+        "brand": "Brand"
       }
     },
     "footer": {

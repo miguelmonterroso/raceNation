@@ -14,9 +14,11 @@ import Download from 'yet-another-react-lightbox/plugins/download';
 import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails';
 import 'yet-another-react-lightbox/plugins/thumbnails.css';
 import { Button } from '@/components/ui/button';
+import { useThemeLanguage } from '@/context/ThemeLanguageContext';
 
 export default function EventDetailPage({ params }: { params: { category: string; eventId: string } }) {
   const { category, eventId } = params;
+  const { translations } = useThemeLanguage();
 
   const event = eventData[category as keyof typeof eventData]?.find(e => e.url === eventId);
   
@@ -40,7 +42,7 @@ export default function EventDetailPage({ params }: { params: { category: string
     return () => window.removeEventListener('resize', updateCharLimit);
   }, []);
 
-  if (!event) return <p className='text-5xl p-12 font-bold'>Evento no encontrado</p>;
+  if (!event) return <p className='text-5xl p-12 font-bold'>{translations.rankingEventPage.notFound}</p>;
 
   const toggleDescription = () => {
     setIsAnimating(true);
@@ -84,16 +86,15 @@ export default function EventDetailPage({ params }: { params: { category: string
                 </>
               )}
             </p>
-            <p className="text-gray-500 mb-4">Fecha: {event.date}</p>
+            <p className="text-gray-500 mb-4">{translations.rankingEventPage.date}: {event.date}</p>
           </div>
           <Image src={event.image} alt={event.title} width={500} height={500} className='max-h-80 rounded-xl'/>
         </div>
-        <h2 className='text-4xl font-bold mt-10 mb-10 pl-12 pr-12'>Aquí te dejamos los resultados de la fecha:</h2>
-        <RankingDataTable event={`${event.title} - ${event.title}`}/>
-
+        <h2 className='text-4xl font-bold mt-10 mb-10 pl-12 pr-12'>{translations.rankingEventPage.results}</h2>
+        <RankingDataTable event={`${event.title} - ${event.date}`} data={event.ranking ?? []}/>
         <div className="text-center mt-10 mb-10">
           <Button onClick={() => setIsLightboxOpen(true)}>
-            Ver fotos del evento
+            {translations.rankingEventPage.pictures}
           </Button>
         </div>
 
@@ -107,7 +108,7 @@ export default function EventDetailPage({ params }: { params: { category: string
           />
         )}
 
-        <h2 className='font-bold text-5xl mb-4 pl-12 pr-12 mt-5'>Eventos que podrian interesarte:</h2>
+        <h2 className='font-bold text-5xl mb-4 pl-12 pr-12 mt-5'>{translations.rankingEventPage.upcomingEvents}</h2>
         <Multi/>
       </div>
     </BlurFade>
