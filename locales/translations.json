@@ -94,6 +94,10 @@
       "brands": "Marcas",
       "allBrands": "Todas las marcas",
       "download": "Descargar Resultados",
+      "searchBrand": "Buscar marca...", 
+      "noResults": "No hay resultados",
+      "showAll": "Mostrar todo",   
+      "showLess": "Mostrar menos",
       "tableHeaders": {
         "position": "Posición",
         "name": "Nombre",
@@ -206,6 +210,10 @@
       "brands": "Brands",
       "allBrands": "All brands",
       "download": "Download Results",
+      "searchBrand": "Buscar marca...", 
+      "noResults": "No hay resultados",
+      "showAll": "Mostrar todo",   
+      "showLess": "Mostrar menos",
       "tableHeaders": {
         "position": "Position",
         "name": "Name",

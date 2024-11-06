@@ -5,6 +5,7 @@ import {
   ColumnFiltersState,
   getCoreRowModel,
   getFilteredRowModel,
+  getPaginationRowModel,
   useReactTable,
   flexRender,
 } from "@tanstack/react-table";
@@ -20,15 +21,17 @@ import { Input } from "@/components/ui/input";
 import brands from "../../data/carBrands/brands.json";
 import { useThemeLanguage } from "@/context/ThemeLanguageContext";
 import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "../ui/button";
+import { Check, ChevronsUpDown } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 type RankingData = {
   name: string;
@@ -81,12 +84,11 @@ export default function RankingDataTable({
   data,
   hideFilters,
 }: EventProps) {
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
-  );
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [nameFilter, setNameFilter] = React.useState<string>("");
   const { translations } = useThemeLanguage();
-
+  const [selectedBrand, setSelectedBrand] = React.useState<string>("");
+  const [open, setOpen] = React.useState(false);
 
   const sortedAndFilteredData = React.useMemo(() => {
     return data
@@ -109,10 +111,12 @@ export default function RankingDataTable({
     data: sortedAndFilteredData,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getFilteredRowModel: getFilteredRowModel()
   });
 
   const handleBrandFilterChange = (brand: string) => {
+    setSelectedBrand(brand);
     setColumnFilters((prev) => [
       ...prev.filter((filter) => filter.id !== "brand"),
       ...(brand !== "all" ? [{ id: "brand", value: brand }] : []),
@@ -156,32 +160,99 @@ export default function RankingDataTable({
   return (
     <div className="w-full overflow-x-auto p-3 lg:p-0">
       <div className={`${hideFilters ? "hidden" : ""}`}>
-        <div className="flex gap-4 py-4 p-2 lg:pl-12 flex-col md:flex-row lg:flex-row lg:items-center">
+        <div className="flex gap-4 py-4 p-2 lg:pl-12 flex-col md:flex-col lg:flex-row lg:items-center">
           <Input
             placeholder={translations.table.filter}
             value={nameFilter}
             onChange={handleNameFilterChange}
             className="max-w-sm"
           />
-          <div className="flex gap-4">
-            <Select onValueChange={handleBrandFilterChange}>
-              <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder={translations.table.brands} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel>{translations.table.brands}</SelectLabel>
-                  <SelectItem value="all">{translations.table.allBrands}</SelectItem>
-                  {[...new Set(data.map((item) => item.brand))].map((brand) => (
-                    <SelectItem key={brand} value={brand}>
-                      {brand}
-                    </SelectItem>
-                  ))}
-                </SelectGroup>
-              </SelectContent>
-            </Select>
+          <div className="flex gap-4 flex-wrap">
+            <Popover open={open} onOpenChange={setOpen}>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="outline"
+                  role="combobox"
+                  aria-expanded={open}
+                  className="w-[200px] justify-between"
+                >
+                  {selectedBrand || translations.table.brands}
+                  <ChevronsUpDown className="opacity-50" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-[200px] p-0">
+                <Command>
+                  <CommandInput placeholder={translations.table.searchBrand} />
+                  <CommandList>
+                    <CommandEmpty>{translations.table.noResults}</CommandEmpty>
+                    <CommandGroup>
+                      <CommandItem
+                        key="all"
+                        value="all"
+                        onSelect={() => {
+                          handleBrandFilterChange("all");
+                          setOpen(false);
+                        }}
+                      >
+                        {translations.table.allBrands}
+                        <Check
+                          className={cn(
+                            "ml-auto",
+                            selectedBrand === "" ? "opacity-100" : "opacity-0"
+                          )}
+                        />
+                      </CommandItem>
+                      {[...new Set(data.map((item) => item.brand))].map(
+                        (brand) => (
+                          <CommandItem
+                            key={brand}
+                            value={brand}
+                            onSelect={() => {
+                              handleBrandFilterChange(brand);
+                              setOpen(false);
+                            }}
+                          >
+                            {brand}
+                            <Check
+                              className={cn(
+                                "ml-auto",
+                                selectedBrand === brand
+                                  ? "opacity-100"
+                                  : "opacity-0"
+                              )}
+                            />
+                          </CommandItem>
+                        )
+                      )}
+                    </CommandGroup>
+                  </CommandList>
+                </Command>
+              </PopoverContent>
+            </Popover>
 
-            <Button onClick={downloadTableAsJpeg}>{translations.table.download}</Button>
+            <Button onClick={downloadTableAsJpeg}>
+              {translations.table.download}
+            </Button>
+
+            <div className="flex flex-wrap gap-4">
+            <Button
+          variant="outline"
+          size="sm"
+          onClick={() => table.previousPage()}
+          disabled={!table.getCanPreviousPage()}
+        >
+          Previous
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => table.nextPage()}
+          disabled={!table.getCanNextPage()}
+        >
+          Next
+        </Button>
+            </div>
+
           </div>
         </div>
       </div>
@@ -222,6 +293,7 @@ export default function RankingDataTable({
           )}
         </TableBody>
       </Table>
+
 
       <div
         id="hidden-table"
