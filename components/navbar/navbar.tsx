@@ -177,21 +177,21 @@ export default function Navbar() {
                   />
                 </li>
                 <ListItem
-                  href="/events/drag"
+                  href="/events/tuning"
                   title="Tuning Show"
                   onMouseEnter={() => setHoveredOption("tuning-show")}
                 >
                   {translations.navbar.tuningShowDescription}
                 </ListItem>
                 <ListItem
-                  href="/events/drift"
+                  href="/events/drag"
                   title="Drag Race"
                   onMouseEnter={() => setHoveredOption("drag-race")}
                 >
                   {translations.navbar.dragRaceDescription}
                 </ListItem>
                 <ListItem
-                  href="/events/tuning"
+                  href="/events/drift"
                   title="Drift"
                   onMouseEnter={() => setHoveredOption("drift")}
                 >

@@ -74,7 +74,7 @@ export default function EventDetailPage({
 
   return (
     <BlurFade delay={0.25} inView>
-      <div className="mt-10 h-[60vh] relative">
+      <div className="mt-10 relative">
         <div className="flex flex-col lg:flex-row">
           <div className="w-full lg:w-1/2 p-6 flex flex-col  justify-center">
             <h1 className="font-bold text-9xl">{event.title}</h1>
