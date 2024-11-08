@@ -21,7 +21,23 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "RaceNation",
-  description: "RaceNation - Car Community",
+  description:
+    "RaceNation es la plataforma definitiva para entusiastas del automovilismo en Guatemala. Encuentra los últimos eventos de carreras, clasificaciones en tiempo real y contenido exclusivo para fanáticos de drag, drift, y tuning. Únete a la comunidad que vive la pasión por la velocidad y mantente al tanto de los próximos eventos en la escena del automovilismo.",
+  openGraph: {
+    title: "RaceNation - La Comunidad del Automovilismo",
+    description:
+      "RaceNation es la plataforma definitiva para entusiastas del automovilismo en Guatemala. Encuentra los últimos eventos, rankings y contenido exclusivo de drag, drift, y tuning.",
+    url: "https://racenationhub.com",
+    type: "website",
+    images: [
+      {
+        url: "https://racenationhub.com/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "RaceNation - La Comunidad del Automovilismo",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

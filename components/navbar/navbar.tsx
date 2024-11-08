@@ -24,7 +24,7 @@ import Image from "next/image";
 
 export default function Navbar() {
   const { toggleLanguage, isDarkMode, toggleTheme, translations } = useThemeLanguage();
-  const [hoveredOption, setHoveredOption] = React.useState<string | null>("drag-race");
+  const [hoveredOption, setHoveredOption] = React.useState<string | null>("tuning-show");
 
   const handleThemeToggle = () => {
     toggleTheme();
