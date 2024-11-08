@@ -13,7 +13,7 @@ export const eventsData = {
         date: "1 de Diciembre",
         link: "/",
         image:
-          "https://images.unsplash.com/photo-1568831898760-a1031df598dc?q=80&w=1924&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "https://images.unsplash.com/photo-1484136063621-1acbc3b4ec98?q=80&w=1953&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         url: "drive-fest-diciembre",
         images: [
           "https://images.unsplash.com/photo-1540915016115-08551d23afaf?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",

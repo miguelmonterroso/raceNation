@@ -54,7 +54,7 @@ const EventToCalendar = ({ event }: { event: EventDetails }) => {
         </Button>
     </div>
         
-    <div id='hidden' className='bg-white h-screen w-[650px] min-h-[900px]'
+    <div id='hidden' className='bg-white h-screen w-[650px] min-h-[900px] max-h-[900px]'
           style={{
           display: "none",
           position: "absolute",
@@ -64,9 +64,9 @@ const EventToCalendar = ({ event }: { event: EventDetails }) => {
       <div className='w-full h-full flex items-center justify-center'>
       <Card className='min-w-[500px] max-w-[550px] shadow-5xl bg-gradient-to-tr from-violet-600 via-violet-600 to-fuchsia-600 border-none rounded-none flex flex-col justify-center items-center min-h-[750px]'>
             <CardHeader>
-                <Image src={event.image} alt="test" width={500} height={300} className='rounded-none opacity-70 max-h-[290px] object-cover'/>
+                <Image src={event.image} alt="test" width={500} height={300} className='rounded-none opacity-70 min-h-[290px] max-h-[290px] object-cover'/>
             </CardHeader>
-            <CardContent className='bg-white p-10 h-full font-mono min-h-[400px] flex flex-col justify-center m-4 min-w-[500px]'>
+            <CardContent className='bg-white p-10 h-full font-mono min-h-[400px] flex flex-col justify-center m-4 min-w-[500px] max-w-[500px]'>
                 <CardTitle className='text-sky-700 font-bold text-5xl mb-5 font-sans'>
                     {event.title}
                 </CardTitle>
