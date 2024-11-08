@@ -113,14 +113,14 @@ export default function Navbar() {
                         <NavigationMenuTrigger>Eventos</NavigationMenuTrigger>
                         <NavigationMenuContent className="flex-flex-col">
                           <ul className="flex flex-col p-8 bg-background border-0">
+                            <ListItem href="/events/tuning" title="Tuning Show">
+                            {translations.navbar.tuningShowDescription}
+                            </ListItem>
                             <ListItem href="/events/drag" title="Drag Race">
-                              {translations.navbar.dragRaceDescription}
+                            {translations.navbar.dragRaceDescription}
                             </ListItem>
                             <ListItem href="/events/drift" title="Drift">
                               {translations.navbar.driftDescription}
-                            </ListItem>
-                            <ListItem href="/events/tuning" title="Tuning Show">
-                              {translations.navbar.tuningShowDescription}
                             </ListItem>
                           </ul>
                         </NavigationMenuContent>
@@ -178,24 +178,24 @@ export default function Navbar() {
                 </li>
                 <ListItem
                   href="/events/drag"
+                  title="Tuning Show"
+                  onMouseEnter={() => setHoveredOption("tuning-show")}
+                >
+                  {translations.navbar.tuningShowDescription}
+                </ListItem>
+                <ListItem
+                  href="/events/drift"
                   title="Drag Race"
                   onMouseEnter={() => setHoveredOption("drag-race")}
                 >
                   {translations.navbar.dragRaceDescription}
                 </ListItem>
                 <ListItem
-                  href="/events/drift"
+                  href="/events/tuning"
                   title="Drift"
                   onMouseEnter={() => setHoveredOption("drift")}
                 >
                   {translations.navbar.driftDescription}
-                </ListItem>
-                <ListItem
-                  href="/events/tuning"
-                  title="Tuning Show"
-                  onMouseEnter={() => setHoveredOption("tuning-show")}
-                >
-                  {translations.navbar.tuningShowDescription}
                 </ListItem>
               </ul>
             </NavigationMenuContent>
