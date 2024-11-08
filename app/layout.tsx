@@ -55,7 +55,9 @@ export default function RootLayout({
             <BlurFade delay={0.25} inView>
             <Navbar />
             <DynamicBreadcrumb/>
-            {children}
+            <div className="lg:min-h-[58vh]">
+              {children}
+            </div>
             </BlurFade>
             <Separator className="mt-10"/>
             <Footer/>

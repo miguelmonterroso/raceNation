@@ -79,8 +79,6 @@ export default function EventDetailPage({
           <div className="w-full lg:w-1/2 p-6 flex flex-col  justify-center">
             <h1 className="font-bold text-9xl">{event.title}</h1>
             <h2 className="font-semibold text-3xl">{event.subTitle}</h2>
-
-            {/* <p className="text-gray-500 mb-4">{translations.rankingEventPage.date}: {event.date}</p> */}
           </div>
           <div className="w-full lg:w-1/2 p-6 flex flex-col  justify-center items-center">
             <h2 className="text-3xl font-bold mb-4 text-center">
@@ -131,11 +129,31 @@ export default function EventDetailPage({
           </div>
         </div>
         <div className="print-area">
-          <EventToCalendar event={event}/>
-
+          <EventToCalendar event={event} />
+          <Particles
+            className="absolute inset-0"
+            quantity={400}
+            ease={80}
+            refresh
+          />
+        </div>
+        <div className="relative h-[19vh] sm:h-[30vh] lg:h-[65vh] w-full overflow-hidden mt-10">
+          <iframe
+            className="absolute top-0 left-0 w-full h-full object-cover bg-red-200"
+            src="https://www.youtube.com/embed/31kplxJn6nw?autoplay=1&mute=1&controls=0&loop=1&playlist=31kplxJn6nw&showinfo=0&modestbranding=1"
+            title="Event Background Video"
+            frameBorder="0"
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+          ></iframe>
+          <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+            <h1 className="text-white text-3xl lg:6xl font-extrabold drop-shadow-md text-center p-4">
+              ¡Vive la Emoción del Automovilismo!
+            </h1>
+          </div>
         </div>
         {/* <h2 className='text-4xl font-bold mt-10 mb-10 pl-12 pr-12'>{translations.rankingEventPage.results}</h2> */}
-{/* 
+        {/* 
         <div className="text-center mt-10 mb-10">
           <Button onClick={() => setIsLightboxOpen(true)}>
             {translations.rankingEventPage.pictures}
@@ -184,14 +202,7 @@ export default function EventDetailPage({
             </>
           )}
         </p> */}
-        <Particles
-        className="absolute inset-0"
-        quantity={400}
-        ease={80}
-        refresh
-      />
       </div>
-      
     </BlurFade>
   );
 }

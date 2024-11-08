@@ -4,7 +4,7 @@ import { MagicCard } from '../ui/magic-card';
 
 interface CardProps {
   title: string;
-  description: string;
+  description?: string;
   date?: string;
   link: string;
   image: string;

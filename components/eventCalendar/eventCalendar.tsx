@@ -1,6 +1,7 @@
 import html2canvas from 'html2canvas';
 import { CalendarDays, AlarmClock, Receipt, MapPinned } from 'lucide-react';
 import { Button } from '../ui/button';
+
 import {
     Card,
     CardContent,
@@ -84,7 +85,7 @@ const EventToCalendar = ({ event }: { event: EventDetails }) => {
                 </p>
                 <p className='text-slate-700 text-md flex items-center gap-5'>
                     <Receipt className="w-6 h-6 text-secondary" />
-                    Q {event.price}
+                    {event.price}
                 </p>
 
             </CardContent>
