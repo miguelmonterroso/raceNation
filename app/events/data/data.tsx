@@ -3,16 +3,17 @@ export const eventsData = {
       {
         id: 1,
         title: "Drive Fest",
-        price: "Q 100",
-        location: "majadas",
-        time: "12:00",
+        price: "100.00",
+        location: "Forum Majadas",
+        time: "8:00",
         subTitle: "El mejor evento de tuning del 2024",
+        day: "Viernes",
         description:
           "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, ea atque recusandae quae dolorem rem expedita vel fugit. Perferendis alias, error ea a commodi incidunt fuga quaerat sapiente iste, cum, aspernatur corporis dolore. Eligendi earum commodi eum repellendus illo! Magni dignissimos saepe architecto vitae fuga qui perspiciatis officiis a in ratione cum, magnam eligendi vero fugiat sit, distinctio nobis quidem minus repellendus iusto impedit culpa. Consequuntur eius dignissimos tempore earum repellat ipsum dolorem neque ducimus ipsam. In harum sapiente quos similique provident voluptatem, excepturi aspernatur quam animi, laboriosam autem veniam officiis voluptates, a velit. Voluptatum vel mollitia quis rem minus accusantium. Autem pariatur illo odio exercitationem voluptatum a omnis id dicta nisi vel labore, dolor itaque? Est quam, sit dolorem odit qui repudiandae id voluptatem. Atque illum quod in iste numquam hic sint explicabo eaque similique, deleniti harum suscipit aperiam sequi dicta adipisci mollitia nobis sed ducimus! Cupiditate eum, quidem vel beatae, eveniet earum, dignissimos fugiat esse nostrum dicta delectus voluptate amet consectetur possimus modi dolorem ipsum velit cum! Aut repellat provident accusamus ratione eaque totam vitae saepe veniam aliquam quas, ex consequatur sunt perspiciatis quia ipsa. Magni voluptatem qui consequuntur animi deserunt error esse voluptate consequatur, totam, itaque soluta.",
-        date: "2024-12-01",
+        date: "1 de Diciembre",
         link: "/",
         image:
-          "https://images.unsplash.com/photo-1681820819635-7912e0c94cde?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "https://images.unsplash.com/photo-1568831898760-a1031df598dc?q=80&w=1924&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         url: "drive-fest-diciembre",
         images: [
           "https://images.unsplash.com/photo-1540915016115-08551d23afaf?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
