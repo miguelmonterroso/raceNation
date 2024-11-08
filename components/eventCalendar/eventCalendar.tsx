@@ -48,9 +48,9 @@ const EventToCalendar = ({ event }: { event: EventDetails }) => {
 
   return (
     <>
-    <div className='flex justify-center items-center w-full'>
+    <div className='flex justify-center items-center'>
         <Button onClick={downloadAsJpeg}>
-            Descargar Invitacion
+            Descargar información
         </Button>
     </div>
         
@@ -76,7 +76,7 @@ const EventToCalendar = ({ event }: { event: EventDetails }) => {
                     </CardDescription>
                 <p className='text-slate-700 text-md mb-2 flex items-center gap-5'>
                     <AlarmClock className="w-6 h-6 text-secondary" />
-                    {event.time} AM
+                    {event.time}
                 </p>
                 <p className='text-slate-700 text-md mb-2 flex items-center gap-5'>
                     <MapPinned className="w-6 h-6 text-secondary" />

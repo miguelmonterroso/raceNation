@@ -74,7 +74,7 @@ export default function EventDetailPage({
 
   return (
     <BlurFade delay={0.25} inView>
-      <div className="mt-10">
+      <div className="mt-10 h-[60vh] relative">
         <div className="flex flex-col lg:flex-row">
           <div className="w-full lg:w-1/2 p-6 flex flex-col  justify-center">
             <h1 className="font-bold text-9xl">{event.title}</h1>
@@ -94,7 +94,7 @@ export default function EventDetailPage({
                 </div>
                 <div>
                   <p className="text-lg font-semibold">Fecha:</p>
-                  <p className="text-sm">15 de Diciembre, 2024</p>
+                  <p className="text-sm">{event.date} - 2024</p>
                 </div>
               </div>
 
@@ -104,7 +104,7 @@ export default function EventDetailPage({
                 </div>
                 <div>
                   <p className="text-lg font-semibold">Hora:</p>
-                  <p className="text-sm">8:00 PM - 11:00 PM</p>
+                  <p className="text-sm">{event.time}</p>
                 </div>
               </div>
 
@@ -114,7 +114,7 @@ export default function EventDetailPage({
                 </div>
                 <div>
                   <p className="text-lg font-semibold">Precio:</p>
-                  <p className="text-sm">$50.00 - Entrada General</p>
+                  <p className="text-sm">{event.price}</p>
                 </div>
               </div>
 
@@ -124,7 +124,7 @@ export default function EventDetailPage({
                 </div>
                 <div>
                   <p className="text-lg font-semibold">Ubicación:</p>
-                  <p className="text-sm">Autódromo Nacional, Guatemala</p>
+                  <p className="text-sm">{event.location}</p>
                 </div>
               </div>
             </div>
@@ -184,13 +184,14 @@ export default function EventDetailPage({
             </>
           )}
         </p> */}
-      </div>
-      <Particles
+        <Particles
         className="absolute inset-0"
-        quantity={800}
+        quantity={400}
         ease={80}
         refresh
       />
+      </div>
+      
     </BlurFade>
   );
 }
