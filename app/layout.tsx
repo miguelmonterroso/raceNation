@@ -7,6 +7,7 @@ import BlurFade from "@/components/ui/blur-fade";
 import Footer from "@/components/footer/footer";
 import { Separator } from "@/components/ui/separator";
 import DynamicBreadcrumb from "@/components/breadCrumb/breadCrumb";
+import Script from "next/script"; // Importa Script para agregar GTM
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -47,23 +48,45 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
+      <head>
+        {/* Google Tag Manager - Head Script */}
+        <Script
+          id="google-tag-manager"
+          strategy="afterInteractive" // Esto asegura que se cargue después de que la página sea interactiva
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-5GXTVRRT');
+            `,
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex justify-center`}
       >
+        {/* Google Tag Manager (noscript) - Body Script */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-5GXTVRRT"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
+        </noscript>
+
         <ThemeLanguageProvider>
           <div className="w-full  flex flex-col justify-center">
             <BlurFade delay={0.25} inView>
-            <Navbar />
-            <DynamicBreadcrumb/>
-            <div className="lg:min-h-[58vh]">
-              {children}
-            </div>
+              <Navbar />
+              <DynamicBreadcrumb />
+              <div className="lg:min-h-[58vh]">{children}</div>
             </BlurFade>
-            <Separator className="mt-10"/>
-            <Footer/>
-            
+            <Separator className="mt-10" />
+            <Footer />
           </div>
-          
         </ThemeLanguageProvider>
       </body>
     </html>

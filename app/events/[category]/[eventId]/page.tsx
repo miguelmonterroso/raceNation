@@ -17,6 +17,10 @@ import { useThemeLanguage } from "@/context/ThemeLanguageContext";
 import Particles from "@/components/ui/particles";
 import { AlarmClock, CalendarDays, MapPinned, Receipt } from "lucide-react";
 import EventToCalendar from "@/components/eventCalendar/eventCalendar";
+import ServicesSection from "@/components/servicesSection/servicesSection";
+import CountdownTimer from "@/components/countDown/countDown";
+import SocialMediaLinks from "@/components/socialMediaLinks/socialMediaLinks";
+// import EventMap from "@/components/eventMap/eventMap";
 
 export default function EventDetailPage({
   params,
@@ -75,7 +79,8 @@ export default function EventDetailPage({
   return (
     <BlurFade delay={0.25} inView>
       <div className="mt-10 relative">
-        <div className="flex flex-col lg:flex-row">
+        <div className="flex flex-col lg:flex-row
+        ">
           <div className="w-full lg:w-1/2 p-6 flex flex-col  justify-center">
             <h1 className="font-bold text-9xl">{event.title}</h1>
             <h2 className="font-semibold text-3xl">{event.subTitle}</h2>
@@ -137,7 +142,11 @@ export default function EventDetailPage({
             refresh
           />
         </div>
-        <div className="relative h-[19vh] sm:h-[30vh] lg:h-[65vh] w-full overflow-hidden mt-10">
+        <CountdownTimer eventDate={event.eventDay}/>
+        <SocialMediaLinks instagramUrl={event.instagram} tiktokUrl={event.tiktok}/>
+        <BlurFade delay={0.25} inView>
+
+        <div className="relative h-[19vh] sm:h-[30vh] lg:h-[65vh] xl:h-[79vh] w-full overflow-hidden mt-10">
           <iframe
             className="absolute top-0 left-0 w-full h-full object-cover bg-red-200"
             src="https://www.youtube.com/embed/31kplxJn6nw?autoplay=1&mute=1&controls=0&loop=1&playlist=31kplxJn6nw&showinfo=0&modestbranding=1"
@@ -148,10 +157,16 @@ export default function EventDetailPage({
           ></iframe>
           <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
             <h1 className="text-white text-3xl lg:6xl font-extrabold drop-shadow-md text-center p-4">
-              ¡Vive la Emoción del Automovilismo!
+              Disfruta el tuning.
             </h1>
           </div>
         </div>
+        </BlurFade>
+        
+        <ServicesSection/>
+
+        {/* <EventMap locationUrl={event.locationUrl}/> */}
+
         {/* <h2 className='text-4xl font-bold mt-10 mb-10 pl-12 pr-12'>{translations.rankingEventPage.results}</h2> */}
         {/* 
         <div className="text-center mt-10 mb-10">
