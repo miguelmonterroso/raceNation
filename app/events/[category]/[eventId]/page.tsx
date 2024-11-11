@@ -142,7 +142,6 @@ export default function EventDetailPage({
             refresh
           />
         </div>
-        <CountdownTimer eventDate={event.eventDay}/>
         <SocialMediaLinks instagramUrl={event.instagram} tiktokUrl={event.tiktok}/>
         <BlurFade delay={0.25} inView>
 
@@ -162,7 +161,7 @@ export default function EventDetailPage({
           </div>
         </div>
         </BlurFade>
-        
+        <CountdownTimer eventDate={event.eventDay}/>
         <ServicesSection/>
 
         {/* <EventMap locationUrl={event.locationUrl}/> */}
