@@ -1,18 +1,11 @@
-// /rankings/[category]/[eventId]/page.tsx
+// /events/[category]/[eventId]/page.tsx
 "use client";
 
-// import { useState, useEffect } from "react";
 import { eventsData } from "../../data/data";
-// import Multi from "@/components/slider/multi/multi";
-// import Image from "next/image";
 import BlurFade from "@/components/ui/blur-fade";
 
-// import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
-// import Download from "yet-another-react-lightbox/plugins/download";
-// import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
-// import { Button } from "@/components/ui/button";
 import { useThemeLanguage } from "@/context/ThemeLanguageContext";
 import Particles from "@/components/ui/particles";
 import { AlarmClock, CalendarDays, MapPinned, Receipt } from "lucide-react";
@@ -20,7 +13,6 @@ import EventToCalendar from "@/components/eventCalendar/eventCalendar";
 import ServicesSection from "@/components/servicesSection/servicesSection";
 import CountdownTimer from "@/components/countDown/countDown";
 import SocialMediaLinks from "@/components/socialMediaLinks/socialMediaLinks";
-// import EventMap from "@/components/eventMap/eventMap";
 
 export default function EventDetailPage({
   params,
@@ -34,26 +26,6 @@ export default function EventDetailPage({
     (e) => e.url === eventId
   );
 
-  // const [showFullDescription, setShowFullDescription] = useState(false);
-  // const [charLimit, setCharLimit] = useState(120);
-  // const [isAnimating, setIsAnimating] = useState(false);
-  // const [isLightboxOpen, setIsLightboxOpen] = useState(false);
-
-  // useEffect(() => {
-  //   const updateCharLimit = () => {
-  //     if (window.matchMedia("(min-width: 1024px)").matches) {
-  //       setCharLimit(1000);
-  //     } else {
-  //       setCharLimit(120);
-  //     }
-  //   };
-
-  //   updateCharLimit();
-  //   window.addEventListener("resize", updateCharLimit);
-
-  //   return () => window.removeEventListener("resize", updateCharLimit);
-  // }, []);
-
   if (!event)
     return (
       <p className="text-5xl p-12 font-bold">
@@ -61,26 +33,13 @@ export default function EventDetailPage({
       </p>
     );
 
-  // const toggleDescription = () => {
-  //   setIsAnimating(true);
-  //   setShowFullDescription((prevState) => {
-  //     if (prevState) {
-  //       window.scrollTo({ top: 0, behavior: "smooth" });
-  //     }
-  //     return !prevState;
-  //   });
-  // };
-
-  // const images = event.images.map((img: string) => ({
-  //   src: img,
-  //   downloadUrl: img,
-  // }));
-
   return (
     <BlurFade delay={0.25} inView>
       <div className="mt-10 relative">
-        <div className="flex flex-col lg:flex-row
-        ">
+        <div
+          className="flex flex-col lg:flex-row
+        "
+        >
           <div className="w-full lg:w-1/2 p-6 flex flex-col  justify-center">
             <h1 className="font-bold text-9xl">{event.title}</h1>
             <h2 className="font-semibold text-3xl">{event.subTitle}</h2>
@@ -142,80 +101,29 @@ export default function EventDetailPage({
             refresh
           />
         </div>
-        <SocialMediaLinks instagramUrl={event.instagram} tiktokUrl={event.tiktok}/>
-        <BlurFade delay={0.25} inView>
-
-        <div className="relative h-[19vh] sm:h-[30vh] lg:h-[65vh] xl:h-[79vh] w-full overflow-hidden mt-10">
-          <iframe
-            className="absolute top-0 left-0 w-full h-full object-cover bg-red-200"
-            src="https://www.youtube.com/embed/31kplxJn6nw?autoplay=1&mute=1&controls=0&loop=1&playlist=31kplxJn6nw&showinfo=0&modestbranding=1"
-            title="Event Background Video"
-            frameBorder="0"
-            allow="autoplay; encrypted-media"
-            allowFullScreen
-          ></iframe>
-          <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
-            <h1 className="text-white text-3xl lg:6xl font-extrabold drop-shadow-md text-center p-4">
-              Disfruta el tuning.
-            </h1>
-          </div>
-        </div>
-        </BlurFade>
-        <CountdownTimer eventDate={event.eventDay}/>
-        <ServicesSection/>
-
-        {/* <EventMap locationUrl={event.locationUrl}/> */}
-
-        {/* <h2 className='text-4xl font-bold mt-10 mb-10 pl-12 pr-12'>{translations.rankingEventPage.results}</h2> */}
-        {/* 
-        <div className="text-center mt-10 mb-10">
-          <Button onClick={() => setIsLightboxOpen(true)}>
-            {translations.rankingEventPage.pictures}
-          </Button>
-        </div>
-
-        {isLightboxOpen && (
-          <Lightbox
-            open={isLightboxOpen}
-            close={() => setIsLightboxOpen(false)}
-            slides={images}
-            plugins={[Download, Thumbnails]}
-            thumbnails={{ position: "bottom" }}
-          />
-        )}
-
-        <h2 className="font-bold text-5xl mb-4 pl-12 pr-12 mt-5">
-          {translations.rankingEventPage.upcomingEvents}
-        </h2>
-        <Multi />
-        <Image
-          src={event.image}
-          alt={event.title}
-          width={500}
-          height={500}
-          className="max-h-80 rounded-xl"
+        <SocialMediaLinks
+          instagramUrl={event.instagram}
+          tiktokUrl={event.tiktok}
         />
-        <p className="text-lg mb-2 mt-2">
-          {event.description.length <= charLimit ? (
-            event.description
-          ) : (
-            <>
-              {showFullDescription ? (
-                <BlurFade delay={0.2} inView={isAnimating}>
-                  {event.description}
-                </BlurFade>
-              ) : (
-                `${event.description.slice(0, charLimit)}... `
-              )}
-              <span
-                className="font-bold underline cursor-pointer"
-                onClick={toggleDescription}
-              >
-                {showFullDescription ? " Ver menos" : " Ver más"}
-              </span>
-            </>
-          )}
-        </p> */}
+        <BlurFade delay={0.25} inView>
+          <div className="relative h-[19vh] sm:h-[30vh] lg:h-[65vh] xl:h-[79vh] w-full overflow-hidden mt-10">
+            <iframe
+              className="absolute top-0 left-0 w-full h-full object-cover bg-red-200"
+              src="https://www.youtube.com/embed/31kplxJn6nw?autoplay=1&mute=1&controls=0&loop=1&playlist=31kplxJn6nw&showinfo=0&modestbranding=1"
+              title="Event Background Video"
+              frameBorder="0"
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+            ></iframe>
+            <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+              <h1 className="text-white text-3xl lg:6xl font-extrabold drop-shadow-md text-center p-4">
+                Disfruta el tuning.
+              </h1>
+            </div>
+          </div>
+        </BlurFade>
+        <CountdownTimer eventDate={event.eventDay} />
+        <ServicesSection />
       </div>
     </BlurFade>
   );
