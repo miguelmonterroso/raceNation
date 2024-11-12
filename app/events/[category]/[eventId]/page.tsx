@@ -79,7 +79,7 @@ const dayCapitalized = day.charAt(0).toUpperCase() + day.slice(1);
       <div className="mt-10 relative">
         <div className="flex flex-col lg:flex-row">
           <div className="w-full lg:w-1/2 p-6 flex flex-col  justify-center">
-            <h1 className="font-bold text-9xl">{event.title}</h1>
+            <h1 className="font-bold text-6xl lg:text-9xl">{event.title}</h1>
             <h2 className="font-semibold text-3xl">{event.subTitle}</h2>
           </div>
           <div className="w-full lg:w-1/2 p-6 flex flex-col  justify-center items-center">
