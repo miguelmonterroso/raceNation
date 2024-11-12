@@ -165,7 +165,7 @@ export default function EventsForm() {
   return (
     <Form {...form}>
       <h2 className="text-2xl mb-5 font-semibold">Agregar nuevo Evento:</h2>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-3 w-1/2">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-3 lg:w-1/2">
         <FormField control={form.control} name="title" render={({ field }) => (
           <FormItem>
             <FormLabel>Nombre del Evento</FormLabel>
@@ -176,7 +176,7 @@ export default function EventsForm() {
           </FormItem>
         )} />
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 flex-col lg:flex-row">
           <FormField control={form.control} name="eventDate" render={({ field }) => (
             <FormItem className="flex flex-col">
               <FormLabel className="mb-2">Fecha del Evento</FormLabel>
@@ -216,7 +216,7 @@ export default function EventsForm() {
             <FormItem>
               <FormLabel>Hora del Evento</FormLabel>
               <FormControl>
-                <Input type="time" {...field} />
+                <Input type="time" {...field} className="w-full min-w-[300px]"/>
               </FormControl>
               <FormMessage />
             </FormItem>
