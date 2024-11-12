@@ -5,13 +5,13 @@ import { MagicCard } from '../ui/magic-card';
 interface CardProps {
   title: string;
   description?: string;
-  date: string;
+  date?: string;
   link: string;
   image: string;
 }
 
 export default function Card({ title, date, link, image }: CardProps) {
-  const dateObj = new Date(date);
+  const dateObj = new Date(date || "1970-01-01");
 
   const hours = dateObj.getUTCHours();
   const minutes = dateObj.getUTCMinutes().toString().padStart(2, '0'); // Agrega un "0" si es necesario
