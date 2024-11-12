@@ -8,7 +8,7 @@ import EventToCalendar from "@/components/eventCalendar/eventCalendar";
 import ServicesSection from "@/components/servicesSection/servicesSection";
 import CountdownTimer from "@/components/countDown/countDown";
 import SocialMediaLinks from "@/components/socialMediaLinks/socialMediaLinks";
-
+import { Skeleton } from '@/components/ui/skeleton';
 interface Event {
   _id: string;
   title: string;
@@ -49,7 +49,7 @@ export default function EventDetailPage({
     fetchEvent();
   }, [eventId]);
 
-  if (loading) return <p>Cargando evento...</p>;
+  if (loading) return <Skeleton className="h-[125px] w-[250px] rounded-xl absolute top-0" />;
   if (!event) return <p className="text-5xl p-12 font-bold">{translations.rankingEventPage.notFound}</p>;
 
   const dateObj = new Date(event.eventDate)

@@ -3,6 +3,8 @@
 import BlurFade from '@/components/ui/blur-fade';
 import Card from '@/components/card/card';
 import { useEffect, useState } from 'react';
+import { Skeleton } from "@/components/ui/skeleton"
+
 interface Category {
   _id: string;
   title: string;
@@ -17,7 +19,7 @@ export default function EventsPage() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch('https://racenationhub.com/api/categories');
+        const response = await fetch('/api/categories');
         const data = await response.json();
         setCategories(data);
       } catch (error) {
@@ -37,7 +39,7 @@ export default function EventsPage() {
         <p className='text-lg mt-3'>Selecciona una categoría para ver los eventos disponibles:</p>
         <div className="flex gap-5 flex-wrap justify-center mt-10">
           {loading ? (
-            <p>Cargando categorías...</p>
+            <Skeleton className="w-[100px] h-[20px] rounded-full" />
           ) : categories.length > 0 ? (
             categories.map(category => (
               <Card key={category._id} 

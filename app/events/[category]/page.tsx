@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import BlurFade from '@/components/ui/blur-fade';
 import Card from '@/components/card/card';
+import { Skeleton } from "@/components/ui/skeleton"
 
 interface Event {
   _id: string;
@@ -40,7 +41,7 @@ export default function EventCategoryPage({ params }: { params: { category: stri
         <h1 className='font-bold text-5xl mb-10'>Próximos Eventos de {category}</h1>
         <div className="flex gap-5 flex-wrap justify-center">
           {loading ? (
-            <p>Cargando eventos...</p>
+            <Skeleton className="h-[125px] w-[250px] rounded-xl" />
           ) : events.length > 0 ? (
             events.map(event => (
               <Card key={event._id} 
