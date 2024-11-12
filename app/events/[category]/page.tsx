@@ -8,7 +8,7 @@ interface Event {
   _id: string;
   title: string;
   description: string;
-  date: string;
+  eventDate: string;
   link: string;
   image: string;
 }
@@ -48,6 +48,7 @@ export default function EventCategoryPage({ params }: { params: { category: stri
                 description={event.description} 
                 link={event.link} 
                 image={event.image} 
+                date={event.eventDate}
               />
             ))
           ) : (

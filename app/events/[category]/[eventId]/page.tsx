@@ -74,11 +74,6 @@ const dayCapitalized = day.charAt(0).toUpperCase() + day.slice(1);
     image: event.image || "",
     date: formattedDate
   };
-
-  console.log("Hora:", formattedTime);     
-  console.log("Día:", dayCapitalized);
-  console.log("Fecha:", formattedDate); 
-
   return (
     <BlurFade delay={0.25} inView>
       <div className="mt-10 relative">
