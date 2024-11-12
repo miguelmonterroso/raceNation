@@ -16,7 +16,7 @@ export async function POST(request) {
   try {
     const client = await clientPromise;
     const db = client.db('RaceNationHub');
-    const newCategory = await request.json(); // Los datos de la categoría
+    const newCategory = await request.json(); 
     const result = await db.collection('categories').insertOne(newCategory);
     return new Response(JSON.stringify({ message: 'Category created', categoryId: result.insertedId }), { status: 201 });
   } catch (error) {

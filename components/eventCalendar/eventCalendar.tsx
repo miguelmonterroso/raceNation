@@ -65,7 +65,8 @@ const EventToCalendar = ({ event }: { event: EventDetails }) => {
       <div className='w-full h-full flex items-center justify-center'>
       <Card className='min-w-[500px] max-w-[550px] shadow-5xl bg-gradient-to-tr from-violet-600 via-violet-600 to-fuchsia-600 border-none rounded-none flex flex-col justify-center items-center min-h-[750px]'>
             <CardHeader>
-                <Image src={event.image} alt={event.title} width={500} height={300} className='rounded-none opacity-70 min-h-[290px] max-h-[290px]'/>
+                <Image src={event.image} alt={event.title} width={500} height={300} className='rounded-none opacity-70 min-h-[290px] max-h-[290px]'     objectFit="cover" sizes="(max-width: 768px) 100vw, (min-width: 769px) 50vw"
+                />
             </CardHeader>
             <CardContent className='bg-white p-10 h-full font-mono min-h-[400px] flex flex-col justify-center m-4 min-w-[500px] max-w-[500px]'>
                 <CardTitle className='text-sky-700 font-bold text-5xl mb-5 font-sans'>
