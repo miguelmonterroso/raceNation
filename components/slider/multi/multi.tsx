@@ -44,8 +44,8 @@ export default function Multi() {
             </div>
             <Image
               src="https://images.unsplash.com/photo-1682428585045-02f49f3ce1f0?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              width={520}
-              height={520}
+              width={620}
+              height={620}
               priority
               className="rounded-md transition-all duration-300 opacity-30"
               alt="image"
@@ -61,8 +61,8 @@ export default function Multi() {
           </div>
           <Image
             src="https://images.unsplash.com/photo-1686282230012-ffff123c96b4?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            width={520}
-            height={520}
+            width={620}
+            height={620}
             priority
             className="rounded-md transition-all duration-300 opacity-30"
             alt="image"
@@ -79,8 +79,8 @@ export default function Multi() {
           </div>
           <Image
             src="https://images.unsplash.com/photo-1563456161948-ed14607c972e?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            width={520}
-            height={520}
+            width={620}
+            height={620}
             priority
             className="rounded-md transition-all duration-300 opacity-30"
             alt="image"
@@ -97,8 +97,8 @@ export default function Multi() {
           </div>
           <Image
             src="https://images.unsplash.com/photo-1624457500204-a47bebfdb725?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            width={520}
-            height={520}
+            width={620}
+            height={620}
             priority
             className="rounded-md transition-all duration-300 opacity-30"
             alt="image"

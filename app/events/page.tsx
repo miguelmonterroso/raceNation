@@ -39,7 +39,7 @@ export default function EventsPage() {
         <p className='text-lg mt-3'>Selecciona una categoría para ver los eventos disponibles:</p>
         <div className="flex gap-5 flex-wrap justify-center mt-10">
           {loading ? (
-            <Skeleton className="w-[100px] h-[20px] rounded-full" />
+            <Skeleton className="h-[125px] w-[250px] rounded-full" />
           ) : categories.length > 0 ? (
             categories.map(category => (
               <Card key={category._id} 

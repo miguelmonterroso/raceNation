@@ -8,6 +8,7 @@ import Footer from "@/components/footer/footer";
 import { Separator } from "@/components/ui/separator";
 import DynamicBreadcrumb from "@/components/breadCrumb/breadCrumb";
 import Script from "next/script";
+import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -83,7 +84,8 @@ export default function RootLayout({
             <Footer/>
             
           </div>
-          
+
+          <Toaster />
         </ThemeLanguageProvider>
       </body>
     </html>
