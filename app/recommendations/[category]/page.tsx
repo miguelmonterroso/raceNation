@@ -30,10 +30,6 @@ const eventData = {
   detailing: [
     { id: 1, title: "detailer 1", description: "Showcase of modified cars", link: "/", image: "https://images.unsplash.com/photo-1624457500204-a47bebfdb725?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
     { id: 2, title: "detailer 2", description: "Showcase of modified cars", link: "/", image: "https://images.unsplash.com/photo-1696092516075-848e47759e7d?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-  ],
-  blackList: [
-    { id: 1, title: "Marco Gonzalez", description: "Por hueco y feo",  link: "/", image: "https://images.unsplash.com/photo-1624457500204-a47bebfdb725?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-    { id: 2, title: "Mario Torres", description: "Por caco y marica",  link: "/", image: "https://images.unsplash.com/photo-1696092516075-848e47759e7d?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
   ]
 };
 
