@@ -29,6 +29,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Calendar } from "@/components/ui/calendar";
 import { format, setHours, setMinutes } from "date-fns";
 import { cn } from "@/lib/utils";
+import BlurFade from "@/components/ui/blur-fade";
 
 const formSchema = z.object({
   title: z.string().min(5, {
@@ -105,7 +106,7 @@ export default function EventsForm() {
     const formattedCategory = category.toLowerCase().replace(/\s+/g, "-");
 
     return {
-      link: `racenationhub.com/events/${formattedCategory}/${formattedTitle}`,
+      link: `/events/${formattedCategory}/${formattedTitle}`,
       url: formattedTitle,
     };
   };
@@ -130,11 +131,12 @@ export default function EventsForm() {
     const second = String(combinedDate.getSeconds()).padStart(2, "0");
 
     const isoDate = `${year}-${month}-${day}T${hour}:${minute}:${second}Z`;
+    const formattedCategory = category.toLowerCase().replace(/\s+/g, "-");
 
     const finalData = {
       ...data,
       eventDate: isoDate,
-
+      category: formattedCategory
     };
 
     setIsSubmitting(true);
@@ -163,6 +165,7 @@ export default function EventsForm() {
   };
 
   return (
+    <BlurFade>
     <Form {...form}>
       <h2 className="text-2xl mb-5 font-semibold">Agregar nuevo Evento:</h2>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-3 lg:w-1/2">
@@ -341,5 +344,6 @@ export default function EventsForm() {
         </Button>
       </form>
     </Form>
+    </BlurFade>
   );
 }

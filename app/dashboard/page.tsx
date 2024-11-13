@@ -15,6 +15,7 @@ import EventsForm from "@/components/dashboard/forms/events";
 import BlogForm from "@/components/dashboard/forms/blog";
 import RankingForm from "@/components/dashboard/forms/ranking";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import BlurFade from "@/components/ui/blur-fade";
 
 export default function Dashboard(){
 
@@ -39,9 +40,17 @@ export default function Dashboard(){
           
         <div className="mt-8 h-[67vh]">
             <ScrollArea className="h-[67vh] p-3">
+              <BlurFade delay={0.5} inView> 
                 {activeForm === "events" && <EventsForm />}
-                {activeForm === "blog" && <BlogForm />}
-                {activeForm === "ranking" && <RankingForm />}
+              </BlurFade>
+              <BlurFade delay={0.5} inView> 
+              {activeForm === "blog" && <BlogForm />}
+
+              </BlurFade>
+              <BlurFade delay={0.5} inView> 
+              {activeForm === "ranking" && <RankingForm />}
+
+                </BlurFade>
             </ScrollArea>
         </div>
 
