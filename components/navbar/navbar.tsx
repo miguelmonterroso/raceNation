@@ -2,7 +2,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { useThemeLanguage } from "../../context/ThemeLanguageContext";
-import { Languages, Moon, Sun, Menu } from "lucide-react";
+import { Languages, Moon, Sun, Menu, LogIn } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -21,6 +21,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Image from "next/image";
+import { Button } from "../ui/button";
 
 export default function Navbar() {
   const { toggleLanguage, isDarkMode, toggleTheme, translations } = useThemeLanguage();
@@ -219,18 +220,23 @@ export default function Navbar() {
       </NavigationMenu>
 
       <div className="hidden lg:flex gap-4">
-        <button
+        <Link href="/auth">
+          <Button>
+            <LogIn/>
+          </Button>
+        </Link>
+        <Button
           onClick={toggleLanguage}
-          className="px-3 py-1 bg-primary text-primary-foreground rounded hover:bg-primary/80 transition"
+          className="px-3 py-1 bg-secondary text-secondary-foreground rounded hover:bg-primary/80 transition"
         >
           <Languages />
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={handleThemeToggle}
           className="px-3 py-1 bg-secondary text-secondary-foreground rounded hover:bg-secondary/80 transition"
         >
           {isDarkMode ? <Sun /> : <Moon />}
-        </button>
+        </Button>
       </div>
     </nav>
   );

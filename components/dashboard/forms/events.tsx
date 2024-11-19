@@ -123,7 +123,6 @@ export default function EventsForm() {
     try {
       let imageUrl = "";
 
-      // Si el usuario seleccionó una imagen, súbela a S3
       if (data.image) {
         const formData = new FormData();
         formData.append("file", data.image);
@@ -136,7 +135,7 @@ export default function EventsForm() {
         if (!uploadResponse.ok) throw new Error("Error al subir la imagen");
 
         const uploadResult = await uploadResponse.json();
-        imageUrl = uploadResult.url; // Obtenemos la URL de la imagen
+        imageUrl = uploadResult.url;
       }
 
       const [hours, minutes] = data.eventTime.split(":").map(Number);
@@ -155,7 +154,7 @@ export default function EventsForm() {
         ...data,
         eventDate: isoDate,
         category: category.toLowerCase().replace(/\s+/g, "-"),
-        image: imageUrl, // Guardamos la URL de la imagen
+        image: imageUrl, 
       };
 
       const response = await fetch("/api/events", {
@@ -173,7 +172,7 @@ export default function EventsForm() {
         description: `El evento ${data.title} ha sido creado.`,
       });
 
-      form.reset(); // Resetea el formulario tras enviarlo
+      form.reset();
     } catch (error) {
       console.error(error);
       alert("Hubo un error al crear el evento. Intenta nuevamente.");

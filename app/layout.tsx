@@ -50,10 +50,9 @@ export default function RootLayout({
   return (
     <html lang="es">
          <head>
-        {/* Google Tag Script (gtag.js) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-F3R5EERQVS"
-          strategy="afterInteractive" // Cargar después de que la página sea interactiva
+          strategy="afterInteractive" 
         />
         <Script
           id="google-analytics"
