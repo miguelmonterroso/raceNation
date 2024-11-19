@@ -71,18 +71,18 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeLanguageProvider>
-          <div className="w-full  flex flex-col justify-center">
-            <BlurFade delay={0.25} inView>
-            <Navbar />
-            <DynamicBreadcrumb/>
-            <div className="lg:min-h-[58vh]">
-              {children}
+            <div className="w-full  flex flex-col justify-center">
+              <BlurFade delay={0.25} inView>
+              <Navbar />
+              <DynamicBreadcrumb/>
+              <div className="lg:min-h-[58vh]">
+                {children}
+              </div>
+              </BlurFade>
+              <Separator className="mt-10"/>
+              <Footer/>            
             </div>
-            </BlurFade>
-            <Separator className="mt-10"/>
-            <Footer/>
-            
-          </div>
+
 
           <Toaster />
         </ThemeLanguageProvider>

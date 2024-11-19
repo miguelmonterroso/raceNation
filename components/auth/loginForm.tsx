@@ -6,7 +6,15 @@ import { Button } from "@/components/ui/button";
 import { Label } from "../ui/label";
 import { useToast } from "@/hooks/use-toast";
 import BlurFade from "../ui/blur-fade";
-
+import { jwtDecode } from 'jwt-decode'
+import { useAuthStore } from "@/context/AuthContext";
+interface DecodedToken {
+  id: string;
+  email: string;
+  name: string;
+  role: string;
+  exp: number;
+}
 export default function LoginForm() {
   const [formData, setFormData] = useState({
     email: "",
@@ -14,6 +22,7 @@ export default function LoginForm() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const setUser = useAuthStore((state) => state.setUser);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -35,12 +44,32 @@ export default function LoginForm() {
 
       if (response.ok) {
         const { token } = await response.json();
+        const decodedToken = jwtDecode<DecodedToken>(token);
+
+        console.log('decoded', {
+          id: decodedToken.id,
+          email: decodedToken.email,
+          name: decodedToken.name,
+          role: decodedToken.role,
+        });
+        
+
+        setUser(
+          {
+            id: decodedToken.id,
+            email: decodedToken.email,
+            name: decodedToken.name,
+            role: decodedToken.role,
+          },
+          token
+        );
+
         toast({
           title: "Inicio de sesión exitoso",
           description: "Bienvenido a la plataforma.",
         });
-        localStorage.setItem("token", token); // Guarda el token en localStorage
-        setFormData({ email: "", password: "" }); // Reinicia el formulario
+        localStorage.setItem("token", token); 
+        setFormData({ email: "", password: "" });
       } else {
         const errorData = await response.json();
         toast({

@@ -24,6 +24,7 @@ export default function Dashboard(){
     const handleSelect = (formType: "events" | "blog" | "ranking") => {
       setActiveForm(formType); 
     };
+
   
     const DATA = {
       navbar: [
@@ -36,7 +37,7 @@ export default function Dashboard(){
 
     return(
         <div className="w-full h-screen p-10">
-            <h2 className="font-bold text-3xl">Bienvenido Miguel</h2>
+            <h2 className="font-bold text-3xl">Bienvenido</h2>
           
         <div className="mt-8 h-[67vh]">
             <ScrollArea className="h-[67vh] p-3">
