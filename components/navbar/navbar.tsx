@@ -45,29 +45,34 @@ export default function Navbar() {
       <Link href="/">
         <div className="text-lg font-semibold">RaceNation</div>
       </Link>
-
+      <div className="gap-3 flex">
       <Sheet>
         <SheetTrigger asChild>
-          <button className="lg:hidden p-2">
+          <Button className="lg:hidden bg-secondary text-secondary-foreground">
             <Menu />
-          </button>
+          </Button>
         </SheetTrigger>
 
         <SheetContent className="border-0 h-full flex items-center justify-center">
           <SheetHeader className="h-[35%] flex items-center justify-evenly">
             <div className="flex gap-4 mt-4">
-              <button
+            <Link href="/auth">
+          <Button>
+            <LogIn/>
+          </Button>
+        </Link>
+              <Button
                 onClick={toggleLanguage}
                 className="px-3 py-1 bg-primary text-primary-foreground rounded hover:bg-primary/80 transition"
               >
                 <Languages />
-              </button>
-              <button
+              </Button>
+              <Button
                 onClick={handleThemeToggle}
                 className="px-3 py-1 bg-secondary text-secondary-foreground rounded hover:bg-secondary/80 transition"
               >
                 {isDarkMode ? <Sun /> : <Moon />}
-              </button>
+              </Button>
             </div>
             <SheetTitle>
               <Link href="/">RaceNation</Link>
@@ -134,6 +139,8 @@ export default function Navbar() {
           </SheetHeader>
         </SheetContent>
       </Sheet>
+      </div>
+
 
       <NavigationMenu className="hidden lg:flex lg:gap-4">
         <NavigationMenuList className="flex gap-4">
