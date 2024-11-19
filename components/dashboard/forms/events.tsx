@@ -185,7 +185,7 @@ export default function EventsForm() {
   return (
     <BlurFade>
     <Form {...form}>
-      <h2 className="text-2xl mb-5 font-semibold">Agregar nuevo Evento:</h2>
+      <h2 className="text-2xl mb-5 font-semibold pt-5">Agregar nuevo Evento:</h2>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-3 lg:w-1/2">
         <FormField control={form.control} name="title" render={({ field }) => (
           <FormItem>
@@ -252,7 +252,6 @@ export default function EventsForm() {
         type="file"
         accept="image/*"
         onChange={(e) => field.onChange(e.target.files?.[0])}
-        className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:border-blue-500"
       />
     </FormControl>
     <FormMessage />
