@@ -41,9 +41,7 @@ const formSchema = z.object({
   eventTime: z.string().nonempty({
     message: "La hora del evento es obligatoria.",
   }),
-  image: z.string().url({
-    message: "La URL de la imagen es obligatoria y debe ser válida.",
-  }),
+  image: z.instanceof(File).optional(), 
   description: z.string().optional(),
   price: z.string().optional(),
   location: z.string().optional(),
@@ -79,7 +77,7 @@ export default function EventsForm() {
       instagram: "",
       tiktok: "",
       category: "",
-      image: "",
+      image: undefined,
       link: "",
       url: "",
     },
@@ -120,28 +118,46 @@ export default function EventsForm() {
   const { link, url } = generateLinkAndUrl(category, title);
 
   const onSubmit = async (data: FormSchema) => {
-    const [hours, minutes] = data.eventTime.split(":").map(Number);
-    const combinedDate = setHours(setMinutes(data.eventDate, minutes), hours);
-
-    const year = combinedDate.getFullYear();
-    const month = String(combinedDate.getMonth() + 1).padStart(2, "0");
-    const day = String(combinedDate.getDate()).padStart(2, "0");
-    const hour = String(combinedDate.getHours()).padStart(2, "0");
-    const minute = String(combinedDate.getMinutes()).padStart(2, "0");
-    const second = String(combinedDate.getSeconds()).padStart(2, "0");
-
-    const isoDate = `${year}-${month}-${day}T${hour}:${minute}:${second}Z`;
-    const formattedCategory = category.toLowerCase().replace(/\s+/g, "-");
-
-    const finalData = {
-      ...data,
-      eventDate: isoDate,
-      category: formattedCategory
-    };
-
     setIsSubmitting(true);
 
     try {
+      let imageUrl = "";
+
+      // Si el usuario seleccionó una imagen, súbela a S3
+      if (data.image) {
+        const formData = new FormData();
+        formData.append("file", data.image);
+
+        const uploadResponse = await fetch("/api/upload", {
+          method: "POST",
+          body: formData,
+        });
+
+        if (!uploadResponse.ok) throw new Error("Error al subir la imagen");
+
+        const uploadResult = await uploadResponse.json();
+        imageUrl = uploadResult.url; // Obtenemos la URL de la imagen
+      }
+
+      const [hours, minutes] = data.eventTime.split(":").map(Number);
+      const combinedDate = setHours(setMinutes(data.eventDate, minutes), hours);
+
+      const year = combinedDate.getFullYear();
+      const month = String(combinedDate.getMonth() + 1).padStart(2, "0");
+      const day = String(combinedDate.getDate()).padStart(2, "0");
+      const hour = String(combinedDate.getHours()).padStart(2, "0");
+      const minute = String(combinedDate.getMinutes()).padStart(2, "0");
+      const second = String(combinedDate.getSeconds()).padStart(2, "0");
+
+      const isoDate = `${year}-${month}-${day}T${hour}:${minute}:${second}Z`;
+
+      const finalData = {
+        ...data,
+        eventDate: isoDate,
+        category: category.toLowerCase().replace(/\s+/g, "-"),
+        image: imageUrl, // Guardamos la URL de la imagen
+      };
+
       const response = await fetch("/api/events", {
         method: "POST",
         headers: {
@@ -156,6 +172,8 @@ export default function EventsForm() {
         title: "Evento creado exitosamente",
         description: `El evento ${data.title} ha sido creado.`,
       });
+
+      form.reset(); // Resetea el formulario tras enviarlo
     } catch (error) {
       console.error(error);
       alert("Hubo un error al crear el evento. Intenta nuevamente.");
@@ -227,14 +245,19 @@ export default function EventsForm() {
         </div>
 
         <FormField control={form.control} name="image" render={({ field }) => (
-          <FormItem>
-            <FormLabel>Imagen de Portada</FormLabel>
-            <FormControl>
-              <Input placeholder="URL de la imagen de portada" {...field} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )} />
+  <FormItem>
+    <FormLabel>Imagen de Portada</FormLabel>
+    <FormControl>
+      <Input
+        type="file"
+        accept="image/*"
+        onChange={(e) => field.onChange(e.target.files?.[0])}
+        className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:border-blue-500"
+      />
+    </FormControl>
+    <FormMessage />
+  </FormItem>
+)} />
 
         <FormField control={form.control} name="subTitle" render={({ field }) => (
           <FormItem>
