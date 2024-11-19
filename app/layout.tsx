@@ -69,7 +69,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex justify-center`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeLanguageProvider>
           <div className="w-full  flex flex-col justify-center">
