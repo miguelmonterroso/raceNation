@@ -8,12 +8,16 @@ import { useToast } from "@/hooks/use-toast";
 import BlurFade from "../ui/blur-fade";
 import { jwtDecode } from 'jwt-decode'
 import { useAuthStore } from "@/context/AuthContext";
+import { LogIn } from "lucide-react";
 interface DecodedToken {
   id: string;
   email: string;
   name: string;
   role: string;
   exp: number;
+  image: string;
+  instagram: string;
+  tiktok: string;
 }
 export default function LoginForm() {
   const [formData, setFormData] = useState({
@@ -45,21 +49,17 @@ export default function LoginForm() {
       if (response.ok) {
         const { token } = await response.json();
         const decodedToken = jwtDecode<DecodedToken>(token);
-
-        console.log('decoded', {
-          id: decodedToken.id,
-          email: decodedToken.email,
-          name: decodedToken.name,
-          role: decodedToken.role,
-        });
-        
-
+    
         setUser(
           {
             id: decodedToken.id,
             email: decodedToken.email,
             name: decodedToken.name,
             role: decodedToken.role,
+            image: decodedToken.image,
+            instagram: decodedToken.instagram,
+            tiktok: decodedToken.tiktok
+
           },
           token
         );
@@ -70,6 +70,9 @@ export default function LoginForm() {
         });
         localStorage.setItem("token", token); 
         setFormData({ email: "", password: "" });
+        setTimeout(()=>{
+          window.location.replace('/dashboard');
+        }, 2000);
       } else {
         const errorData = await response.json();
         toast({
@@ -122,7 +125,7 @@ export default function LoginForm() {
           />
         </div>
         <Button type="submit" disabled={isSubmitting} className="w-full">
-          {isSubmitting ? "Iniciando sesión..." : "Iniciar sesión"}
+          {isSubmitting ? "Iniciando sesión..." : "Iniciar sesión"} <LogIn/>
         </Button>
       </form>
     </div>

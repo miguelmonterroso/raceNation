@@ -2,7 +2,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { useThemeLanguage } from "../../context/ThemeLanguageContext";
-import { Languages, Moon, Sun, Menu, LogIn } from "lucide-react";
+import { Languages, Moon, Sun, Menu, LogIn, User } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -22,10 +22,12 @@ import {
 } from "@/components/ui/sheet";
 import Image from "next/image";
 import { Button } from "../ui/button";
+import { useAuthStore } from "@/context/AuthContext";
 
 export default function Navbar() {
   const { toggleLanguage, isDarkMode, toggleTheme, translations } = useThemeLanguage();
   const [hoveredOption, setHoveredOption] = React.useState<string | null>("tuning-show");
+  const user = useAuthStore((state) => state.user);
 
   const handleThemeToggle = () => {
     toggleTheme();
@@ -56,9 +58,10 @@ export default function Navbar() {
         <SheetContent className="border-0 h-full flex items-center justify-center">
           <SheetHeader className="h-[35%] flex items-center justify-evenly">
             <div className="flex gap-4 mt-4">
-            <Link href="/auth">
+            <Link href={!user ? "/auth" : "/dashboard"}>
           <Button>
-            <LogIn/>
+            
+            {!user ? <LogIn/> : <User/>}
           </Button>
         </Link>
               <Button
@@ -227,9 +230,9 @@ export default function Navbar() {
       </NavigationMenu>
 
       <div className="hidden lg:flex gap-4">
-        <Link href="/auth">
+        <Link href={!user ? "/auth" : "/dashboard"}>
           <Button>
-            <LogIn/>
+          {!user ? <LogIn/> : <User/>}
           </Button>
         </Link>
         <Button

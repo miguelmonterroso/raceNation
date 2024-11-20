@@ -1,21 +1,41 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import {jwtDecode} from "jwt-decode";
+
+interface User {
+  id: string;
+  email: string;
+  name: string;
+  role: string;
+  image: string;
+  instagram: string;
+  tiktok: string;
+}
 
 interface AuthState {
-  user: {
-    id: string;
-    email: string;
-    name: string;
-    role: string;
-  } | null;
+  user: User | null;
   token: string | null;
-  setUser: (user: AuthState["user"], token: string) => void;
+  setUser: (user: User | null, token: string | null) => void;
   logout: () => void;
+  initializeAuth: () => void;
 }
+
+const zustandLocalStorage = {
+  getItem: (name: string) => {
+    const value = localStorage.getItem(name);
+    return value ? JSON.parse(value) : null;
+  },
+  setItem: (name: string, value: unknown) => {
+    localStorage.setItem(name, JSON.stringify(value));
+  },
+  removeItem: (name: string) => {
+    localStorage.removeItem(name);
+  },
+};
 
 export const useAuthStore = create<AuthState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       user: null,
       token: null,
       setUser: (user, token) =>
@@ -28,10 +48,21 @@ export const useAuthStore = create<AuthState>()(
           user: null,
           token: null,
         }),
+      initializeAuth: () => {
+        const token = get().token;
+        if (token) {
+          try {
+            const decodedToken = jwtDecode<User>(token);
+            set({ user: decodedToken, token });
+          } catch (error) {
+            console.error("Error decoding token:", error);
+          }
+        }
+      },
     }),
     {
-      name: "auth-store", 
-      partialize: (state) => ({ token: state.token }),
+      name: "auth-store",
+      storage: zustandLocalStorage,
     }
   )
 );
