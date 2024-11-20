@@ -7,8 +7,8 @@ const updateUserSchema = z.object({
   name: z.string().optional(),
   role: z.string().optional(),
   profileImage: z.string().url({ message: "La URL de la imagen debe ser válida" }).optional(),
-  instagram: z.string().url({ message: "La URL de Instagram debe ser válida" }).optional(),
-  tiktok: z.string().url({ message: "La URL de TikTok debe ser válida" }).optional(),
+  instagram: z.string().optional(),
+  tiktok: z.string().optional(),
 });
 
 export async function PUT(req) {
