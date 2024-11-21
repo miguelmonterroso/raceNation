@@ -3,7 +3,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { useThemeLanguage } from '../../context/ThemeLanguageContext';
-import { Facebook, Instagram, Twitter } from 'lucide-react';
+import { Instagram } from 'lucide-react';
+// import { Facebook, Twitter } from 'lucide-react';
 import BlurFade from '../ui/blur-fade';
 
 export default function Footer() {
@@ -32,18 +33,18 @@ export default function Footer() {
         
         <div>
           <h3 className="text-xl font-semibold">{translations.footer.contact}</h3>
-          <p className="mt-2 text-sm">{translations.footer.email}: contacto@racenation.com</p>
-          <p className="text-sm">{translations.footer.phone}: +502 1234-5678</p>
+          <p className="mt-2 text-sm">{translations.footer.email}: contact@racenationhub.com</p>
+          {/* <p className="text-sm">{translations.footer.phone}: +502 1234-5678</p> */}
           <div className="flex gap-4 mt-4">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+            {/* <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
               <Facebook className="w-6 h-6" />
-            </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+            </a> */}
+            <a href="https://instagram.com/racenationhub" target="_blank" rel="noopener noreferrer">
               <Instagram className="w-6 h-6" />
             </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+            {/* <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
               <Twitter className="w-6 h-6" />
-            </a>
+            </a> */}
           </div>
         </div>
       </div>
