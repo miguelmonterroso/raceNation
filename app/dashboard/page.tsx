@@ -78,7 +78,7 @@ export default function Dashboard(){
                 </BlurFade>
             </ScrollArea>
         </div>
-        {user.role === "organization" || user.role === "admin" ?         <TooltipProvider>
+        {(user.role === "organization" || user.role === "admin") ? <TooltipProvider>
         <Dock direction="middle">
           {DATA.navbar.map((item) => (
             <DockIcon key={item.label}>
