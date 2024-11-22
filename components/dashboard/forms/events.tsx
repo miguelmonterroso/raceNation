@@ -57,8 +57,11 @@ const formSchema = z.object({
 });
 
 type FormSchema = z.infer<typeof formSchema>;
-
-export default function EventsForm() {
+interface props {
+  ig?: string;
+  tk?: string;
+}
+export default function EventsForm({ig, tk} : props) {
   const { toast } = useToast();
   const [categories, setCategories] = useState<{ _id: string; title: string }[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -74,8 +77,8 @@ export default function EventsForm() {
       location: "",
       locationUrl: "",
       subTitle: "",
-      instagram: "",
-      tiktok: "",
+      instagram: ig || "",
+      tiktok: tk || "",
       category: "",
       image: undefined,
       link: "",

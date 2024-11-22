@@ -66,7 +66,7 @@ export default function Dashboard(){
                 {activeForm === "profile" && <ProfileForm/>}
               </BlurFade>
               <BlurFade delay={0.5} inView> 
-                {activeForm === "events" && <EventsForm />}
+                {activeForm === "events" && <EventsForm ig={user.instagram} tk={user.tiktok}/>}
               </BlurFade>
               <BlurFade delay={0.5} inView> 
               {activeForm === "blog" && <BlogForm />}

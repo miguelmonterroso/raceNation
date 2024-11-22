@@ -20,7 +20,6 @@ export default function ProfileForm() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const { toast } = useToast();
 
-  // Función para obtener la información del usuario
   const fetchUserData = useCallback(async () => {
     if (!user?.id) return;
 
