@@ -50,6 +50,11 @@ export default function RegisterForm() {
 
     const lowerCaseFormData = Object.keys(formData).reduce((acc, key) => {
       acc[key as keyof typeof formData] = formData[key as keyof typeof formData].toLowerCase();
+      if (key === "password") {
+        acc[key as keyof typeof formData] = formData[key as keyof typeof formData];
+      } else {
+        acc[key as keyof typeof formData] = formData[key as keyof typeof formData].toLowerCase();
+      }
       return acc;
     }, {} as typeof formData);
 
