@@ -37,6 +37,7 @@ export default function RegisterForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    
     if (formData.password !== formData.confirmPassword) {
       toast({
         title: "Las contraseñas no coinciden",
@@ -46,13 +47,19 @@ export default function RegisterForm() {
 
       return;
     }
+
+    const lowerCaseFormData = Object.keys(formData).reduce((acc, key) => {
+      acc[key as keyof typeof formData] = formData[key as keyof typeof formData].toLowerCase();
+      return acc;
+    }, {} as typeof formData);
+
     try {
       const response = await fetch("/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(lowerCaseFormData),
       });
 
       if (response.ok) {

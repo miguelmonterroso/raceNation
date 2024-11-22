@@ -48,14 +48,18 @@ export default function LoginForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
+    const lowerCaseFormData = Object.keys(formData).reduce((acc, key) => {
+      acc[key as keyof typeof formData] = formData[key as keyof typeof formData].toLowerCase();
+      return acc;
+    }, {} as typeof formData);
+    
     try {
       const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(lowerCaseFormData),
       });
 
       if (response.ok) {
