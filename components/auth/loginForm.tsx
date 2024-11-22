@@ -6,9 +6,15 @@ import { Button } from "@/components/ui/button";
 import { Label } from "../ui/label";
 import { useToast } from "@/hooks/use-toast";
 import BlurFade from "../ui/blur-fade";
-import { jwtDecode } from 'jwt-decode'
+import { jwtDecode } from "jwt-decode";
 import { useAuthStore } from "@/context/AuthContext";
-import { LogIn } from "lucide-react";
+import { Eye, EyeClosed, LogIn } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 interface DecodedToken {
   id: string;
   email: string;
@@ -27,6 +33,12 @@ export default function LoginForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
   const setUser = useAuthStore((state) => state.setUser);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = (e: React.FormEvent) => {
+    e.preventDefault();
+    setShowPassword(!showPassword);
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -49,7 +61,7 @@ export default function LoginForm() {
       if (response.ok) {
         const { token } = await response.json();
         const decodedToken = jwtDecode<DecodedToken>(token);
-    
+
         setUser(
           {
             id: decodedToken.id,
@@ -58,8 +70,7 @@ export default function LoginForm() {
             role: decodedToken.role,
             image: decodedToken.image,
             instagram: decodedToken.instagram,
-            tiktok: decodedToken.tiktok
-
+            tiktok: decodedToken.tiktok,
           },
           token
         );
@@ -68,11 +79,11 @@ export default function LoginForm() {
           title: "Inicio de sesión exitoso",
           description: "Bienvenido a la plataforma.",
         });
-        localStorage.setItem("token", token); 
+        localStorage.setItem("token", token);
         setFormData({ email: "", password: "" });
-        setTimeout(()=>{
-          window.location.replace('/dashboard');
-        }, 2000);
+        setTimeout(() => {
+          window.location.replace("/dashboard");
+        }, 200);
       } else {
         const errorData = await response.json();
         toast({
@@ -93,42 +104,67 @@ export default function LoginForm() {
 
   return (
     <BlurFade delay={0.5} inView>
-    <div className="w-[350px] mt-10 p-5 shadow-md rounded-md">
-      <h2 className="text-xl font-bold mb-5">Inicio de Sesión</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <Label className="block text-sm font-medium mb-1" htmlFor="email">
-            Correo Electrónico
-          </Label>
-          <Input
-            id="email"
-            name="email"
-            type="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="ejemplo@correo.com"
-            required
-          />
-        </div>
-        <div>
-          <Label className="block text-sm font-medium mb-1" htmlFor="password">
-            Contraseña
-          </Label>
-          <Input
-            id="password"
-            name="password"
-            type="password"
-            value={formData.password}
-            onChange={handleChange}
-            placeholder="Contraseña segura"
-            required
-          />
-        </div>
-        <Button type="submit" disabled={isSubmitting} className="w-full">
-          {isSubmitting ? "Iniciando sesión..." : "Iniciar sesión"} <LogIn/>
-        </Button>
-      </form>
-    </div>
+      <div className="w-[350px] mt-10 p-5 shadow-md rounded-md">
+        <h2 className="text-xl font-bold mb-5">Inicio de Sesión</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <Label className="block text-sm font-medium mb-1" htmlFor="email">
+              Correo Electrónico
+            </Label>
+            <Input
+              id="email"
+              name="email"
+              type="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="ejemplo@correo.com"
+              required
+            />
+          </div>
+          <div>
+            <Label
+              className="block text-sm font-medium mb-1"
+              htmlFor="password"
+            >
+              Contraseña
+            </Label>
+            <div className="flex items-center justify-end">
+              <Input
+                id="password"
+                name="password"
+                type={showPassword ? "text" : "password"}
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="Contraseña segura"
+                required
+              />
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger className="bg-red-200 absolute mr-9 mb-5">
+                {showPassword ? (
+                <EyeClosed
+                  onClick={togglePasswordVisibility}
+                  className="absolute mr-3 cursor-pointer"
+                />
+              ) : (
+                <Eye
+                  onClick={togglePasswordVisibility}
+                  className="absolute mr-3 cursor-pointer"
+                />
+              )}
+                </TooltipTrigger>
+                <TooltipContent>
+                  {showPassword ? 'Hide Password' : 'Show Password'}
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            </div>
+          </div>
+          <Button type="submit" disabled={isSubmitting} className="w-full">
+            {isSubmitting ? "Iniciando sesión..." : "Iniciar sesión"} <LogIn />
+          </Button>
+        </form>
+      </div>
     </BlurFade>
   );
 }
